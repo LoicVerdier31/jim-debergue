@@ -1,0 +1,536 @@
+.App {
+  text-align: center;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-image: url(./static/bg-accueil.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-attachment: fixed;
+  background-position: center;
+  background-color: rgb(5, 2, 2);
+  padding: 0p;
+  margin: 0;
+}
+
+.app-header {
+  background-image: url(./static/logo.png);
+  background-repeat: no-repeat;
+  background-position: top;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.822);
+  opacity: 80%;
+}
+
+.menu {
+  color: white;
+  position: relative;
+  padding-top: 20%;
+  background-color: transparent;
+  width: 50%;
+  height: 500px;
+  font-weight: 200;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  margin: auto;
+}
+.menu-item {
+  position: relative;
+  padding: 40px;
+}
+hr {
+  margin-top: 50px;
+}
+a {
+  position: relative;
+  text-decoration: none;
+  color: white;
+  font-size: 20px;
+}
+
+a:hover {
+  color: white;
+  font-weight: 300;
+}
+a:visited {
+  color: white;
+}
+
+.artist-main {
+  display: flex;
+  position: relative;
+  width: 100%;
+  background-color: black;
+  justify-content: space-between;
+}
+.col1 {
+  position: relative;
+  float: left;
+  padding: 20px;
+  flex-basis: 20%;
+}
+
+.col2 {
+  position: relative;
+  padding: 20px;
+  flex-basis: 20%;
+  max-width: 20%;
+}
+.col3 {
+  float: right;
+  position: relative;
+  padding: 20px;
+  flex-basis: 50%;
+}
+
+.peintre-pic {
+  position: relative;
+  height: max-content;
+  max-height: 100%;
+  max-width: 100%;
+}
+.main-text-title {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 40px;
+  font-weight: 300;
+  color: white;
+  padding-top: 30%;
+}
+.main-text {
+  position: relative;
+  color: white;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 18px;
+  font-weight: 100;
+}
+
+.last-work {
+  background-color:white;
+  position: relative;
+}
+.last-work .main-text-title{
+color: black;
+padding-top: 1%;
+}
+
+/* Galerie */
+.galery-page {
+  text-align: center;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-image: url(./static/bg-galerie.jpg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-attachment: fixed;
+  background-position: center;
+  padding: 0;
+  margin: 0;
+  align-items: center;
+  justify-content: center;
+}
+.galery-header {
+  background-image: url(./static/logonoir.png);
+  background-repeat: no-repeat;
+  background-position: top;
+  background-color: white;
+  width: 100%;
+  height: 200%;
+  opacity: 90%;
+  margin-bottom: 30%;
+}
+
+.galery-menu {
+  color: black;
+  position: relative;
+  padding-top: 15%;
+  background-color: transparent;
+  width: 50%;
+  height: 200px;
+  font-weight: 200;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  margin: auto;
+}
+.galery-menu-item {
+  position: relative;
+  padding: 40px;
+}
+.galery-menu a {
+  color: black;
+  position: relative;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.galery-title {
+  background-color: white;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 300%;
+  font-weight: 100;
+  padding-bottom: 20px;
+}
+
+.galery {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  flex-wrap: wrap;
+  background-color: white;
+  justify-content: space-between;
+  margin: 15%;
+  z-index: 1;
+}
+
+.array {
+  width: calc(33.33% - 1%);
+  height: 20em;
+  box-sizing: border-box;
+  background-color: transparent;
+  text-align: center;
+  color: black;
+  float: left;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  padding-bottom: 54%;
+  margin-top: 40px;
+}
+
+.array div {
+  width: 100%;
+  height: auto;
+}
+.g-array-title {
+  font-size: 150%;
+  font-weight: 250;
+}
+.g-array-dimension {
+  font-size: 80%;
+  font-weight: 100;
+}
+.fondu {
+  position: relative;
+  height: 50%;
+  cursor: pointer;
+}
+.galerie-images-haut,
+.galerie-images-bas {
+  position: absolute;
+  height: auto;
+  left: 0;
+  max-width: 100%;
+}
+.fondu img {
+  transition: opacity 200ms linear;
+}
+.fondu img.galerie-images-haut:hover {
+  opacity: 0;
+}
+.array-page {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  background-color: white;
+  justify-content: space-between;
+  margin: 5%;
+  z-index: 2;
+}
+
+.array-title {
+  text-align: center;
+  width: 100%;
+  font-size: 200%;
+  font-weight: 100;
+  
+}
+
+.array-main-pic {
+  flex-basis: calc(50% - 5%);
+  max-width: 50%;
+  text-align: right;
+  margin-bottom: 200px;
+  box-shadow: 3px 3px red, -1em -0.2em 0.9em olive;
+}
+
+.modal-main-pic {
+  position: relative;
+  height: 100%;
+  overflow: scroll;
+  z-index: 3;
+}
+::-webkit-scrollbar {
+  width: 0.7em;
+}
+
+.zoom-pic {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.3s;
+}
+
+.modal-main-pic:hover .zoom-pic {
+  transform: scale(1.8);
+  cursor: pointer;
+}
+
+.array-pic {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  flex-wrap: wrap;
+  background-color: white;
+  justify-content: space-between;
+}
+.array-pic img[src="data:image/webp;base64,null"] {
+  display: none;
+}
+
+.array-pic img {
+  width: 10%;
+  margin-right: 5%;
+  cursor: pointer;
+}
+
+.array-info {
+  width: calc(50% - 0%);
+  background-color: white;
+  font-size: large;
+  font-weight: 200;
+  color: black;
+  position: relative;
+  text-align: left;
+  padding-bottom: 30%;
+}
+.array-info p {
+  font-weight: 400;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal {
+  background: white;
+  padding: 10px;
+  position: relative;
+  max-height: 90%;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  overflow: scroll;
+}
+
+.close-button {
+  position: absolute;
+  top: 10%;
+  right: 5%;
+  background: none;
+  border: none;
+  font-size: 400%;
+  cursor: pointer;
+}
+
+/* L'Artiste  */
+.artist-page {
+  text-align: center;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-image: url(./static/bg-artiste.JPG);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-attachment: fixed;
+  padding: 0p;
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+.artist-bloc {
+  background-color: white;
+  margin-top: -7%;
+}
+.artist-title {
+  padding-top: 5%;
+  font-size: 300%;
+  font-weight: 200;
+}
+
+.biography {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 10%;
+}
+
+.text {
+  width: calc(50% - 1%);
+  text-align: left;
+  font-size: 100%;
+  font-weight: 300;
+}
+.title {
+  font-size: 200%;
+}
+
+.p {
+  margin-bottom: 5%;
+}
+
+.biography img {
+  width: calc(45% - 5%);
+}
+.inspiration {
+  background-color: black;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 10%;
+}
+.inspiration img {
+  width: calc(40% - 5%);
+}
+
+.inspiration p {
+  color: white;
+}
+
+.technical {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 10%;
+}
+
+.technical img {
+  width: calc(40% - 5%);
+  padding-right: 5%;
+}
+
+.technical p {
+  color: black;
+}
+
+.groups {
+  background-color: black;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 10%;
+}
+.groups img {
+}
+.groups p {
+  color: white;
+}
+
+
+/* Contact */
+.Contact-page {
+  position: absolute;
+  z-index: 1;
+  height: 1000px;
+  background-color: rgba(240, 240, 200, 0.945);
+  width: 100%;
+  opacity: 90%;
+}
+.Contact-title {
+  position: relative;
+  font-family: fantasy;
+  margin-top: 50px;
+  font-size: 40px;
+  font-style: italic;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+}
+.Contact-email {
+  position: relative;
+  margin-top: 150px;
+}
+
+
+/* Admin */
+.admin-page {
+  color: white;
+  position: relative;
+  padding-top: 10%;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-weight: 100;
+  font-size: 100%;
+  background-color: black;
+  background-image: url(./static/logo.png);
+  background-repeat: no-repeat;
+  background-position: top;
+  text-align: center;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  padding: 0p;
+  margin: 0;
+}
+.admin-title {
+  font-size: 200%;
+  padding-top: 10%;
+}
+.admin-bloc{
+  background-color: black;
+}
+.admin-form {
+  text-align: center;
+  padding: 50px;
+  justify-content: space-between;
+}
+.admin-list{
+  background-color: white;
+
+}
+.admin-list .galery {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  flex-wrap: wrap;
+  background-color: white;
+  justify-content: space-between;
+  margin: 5%;
+  z-index: 1;
+}
+
+.admin-list .array {
+  width: calc(10% - 1%);
+  height: 20em;
+  box-sizing: border-box;
+  background-color: transparent;
+  text-align: center;
+  color: black;
+  float: left;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  padding-bottom: 10%;
+  margin-top: 40px;
+}
+.admin-list .g-array-title{
+  font-size: 100%;
+}

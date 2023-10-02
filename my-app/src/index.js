@@ -5,7 +5,6 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
 // routes
-
 import { Artiste } from "./components/L'artiste";
 import { Contact } from "./components/Contact";
 import { Galery } from "./components/Galery";
@@ -15,11 +14,11 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-
   <React.StrictMode>
     <Router>
       <Routes>
         <Route path="/" element={<App />} />
+        <Route path="/jim-debergue" element={<App />} />
         <Route path="/Artiste" element={<Artiste />} />
         <Route path="/Galery" element={<Galery />} />
         <Route path="/Contact" element={<Contact />} />

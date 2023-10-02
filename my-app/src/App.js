@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import "./index"
+import "./index.js";
 import axios from "axios";
 import { ArrayDetails as LastArraysDetails } from "./components/Galery";
 import GaleryModal from "./components/Galerymodal";
@@ -24,13 +24,13 @@ export function Menu() {
     <div className="menu">
       <hr></hr>
 
-      <a className="menu-item" href="./Galery">
+      <a className="menu-item" href="./jim-debergue/Galery">
         Galerie
       </a>
-      <a className="menu-item" href="./Artiste">
+      <a className="menu-item" href="./jim-debergue/Artiste">
         L'artiste
       </a>
-      <a className="menu-item" href="./Contact">
+      <a className="menu-item" href=".jim-debergue/Contact">
         Contact
       </a>
     </div>

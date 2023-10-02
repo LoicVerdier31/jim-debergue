@@ -34,14 +34,14 @@ export function GaleryMenu() {
       <a className="menu-item" href="./">
         Accueil
       </a>
-      <a className="galery-menu-item" href="./Galery">
+      <a className="galery-menu-item" href="./jim-debergue/Galery">
         Galerie
       </a>
 
-      <a className="galery-menu-item" href="./Artiste">
+      <a className="galery-menu-item" href="./jim-debergue/Artiste">
         L'artiste
       </a>
-      <a className="galery-menu-item" href="./Contact">
+      <a className="galery-menu-item" href="./jim-debergue/Contact">
         Contact
       </a>
     </div>

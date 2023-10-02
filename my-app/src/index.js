@@ -17,12 +17,11 @@ root.render(
   <React.StrictMode>
     <Router>
       <Routes>
-        <Route path="/" element={<App />} />
         <Route path="/jim-debergue" element={<App />} />
-        <Route path="/Artiste" element={<Artiste />} />
-        <Route path="/Galery" element={<Galery />} />
-        <Route path="/Contact" element={<Contact />} />
-        <Route path="/Admin" element={<Admin />} />
+        <Route path="/jim-debergue/Artiste" element={<Artiste />} />
+        <Route path="/jim-debergue/Galery" element={<Galery />} />
+        <Route path="/jim-debergue/Contact" element={<Contact />} />
+        <Route path="/jim-debergue/Admin" element={<Admin />} />
       </Routes>
     </Router>
   </React.StrictMode>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
+import "./index"
 import axios from "axios";
 import { ArrayDetails as LastArraysDetails } from "./components/Galery";
 import GaleryModal from "./components/Galerymodal";

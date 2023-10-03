@@ -1,10 +1,11 @@
 import React from "react";
 import "../App.css";
-import "../App.js";
+import "./app.jsx";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import GaleryModal from "./Galerymodal";
 import MainpicModal from "./MainpicModal";
+import { Link } from "react-router-dom";
 
 export function Galery() {
   return (
@@ -31,19 +32,19 @@ export function GaleryMenu() {
   return (
     <div className="galery-menu">
       <hr></hr>
-      <a className="menu-item" href="./">
+      <Link className="galery-menu-item" to="/jim-debergue">
         Accueil
-      </a>
-      <a className="galery-menu-item" href="./jim-debergue/Galery">
+      </Link>
+      <Link className="galery-menu-item" to="/Galery">
         Galerie
-      </a>
+      </Link>
 
-      <a className="galery-menu-item" href="./jim-debergue/Artiste">
+      <Link className="galery-menu-item" to="/Artiste">
         L'artiste
-      </a>
-      <a className="galery-menu-item" href="./jim-debergue/Contact">
+      </Link>
+      <Link className="galery-menu-item" to="/Contact">
         Contact
-      </a>
+      </Link>
     </div>
   );
 }

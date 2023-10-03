@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
-import "./App.css";
-import "./index.js";
+import "../App.css";
+import "../index";
 import axios from "axios";
-import { ArrayDetails as LastArraysDetails } from "./components/Galery";
-import GaleryModal from "./components/Galerymodal";
+import { ArrayDetails as LastArraysDetails } from "./Galery";
+import GaleryModal from "./Galerymodal";
+import { Link } from "react-router-dom";
 
 //images
-import peintre from "./static/peintre-accueil.JPG";
+import peintre from "../static/peintre-accueil.JPG";
 // App
 
 export function Header() {
@@ -23,16 +24,15 @@ export function Menu() {
   return (
     <div className="menu">
       <hr></hr>
-
-      <a className="menu-item" href="./jim-debergue/Galery">
+      <Link to="/Galery" className="menu-item">
         Galerie
-      </a>
-      <a className="menu-item" href="./jim-debergue/Artiste">
+      </Link>
+      <Link to="/Artiste" className="menu-item">
         L'artiste
-      </a>
-      <a className="menu-item" href=".jim-debergue/Contact">
+      </Link>
+      <Link to="/Contact" className="menu-item">
         Contact
-      </a>
+      </Link>
     </div>
   );
 }
@@ -182,7 +182,7 @@ export function LastArrays() {
   );
 }
 
-function App() {
+export function App() {
   return (
     <div className="App">
       <Header></Header>

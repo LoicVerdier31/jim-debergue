@@ -1,27 +1,28 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
 // routes
-import { Artiste } from "./components/L'artiste";
-import { Contact } from "./components/Contact";
-import { Galery } from "./components/Galery";
-import { Admin } from "./components/Admin";
+import { App } from "./components/app.jsx";
+import { Artiste } from "./components/L'artiste.jsx";
+import { Contact } from "./components/Contact.jsx";
+import { Galery } from "./components/Galery.jsx";
+import { Admin } from "./components/Admin.jsx";
 
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Router>
+      <Link to="admin"></Link>
       <Routes>
         <Route path="/jim-debergue" element={<App />} />
-        <Route path="/jim-debergue/Artiste" element={<Artiste />} />
-        <Route path="/jim-debergue/Galery" element={<Galery />} />
-        <Route path="/jim-debergue/Contact" element={<Contact />} />
-        <Route path="/jim-debergue/Admin" element={<Admin />} />
+        <Route path="/Artiste" element={<Artiste />} />
+        <Route path="/Galery" element={<Galery />} />
+        <Route path="/Contact" element={<Contact />} />
+        <Route path="/Admin" element={<Admin />} />
       </Routes>
     </Router>
   </React.StrictMode>

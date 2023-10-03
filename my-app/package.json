@@ -10,6 +10,7 @@
     "axios": "^1.5.0",
     "cors": "^2.8.5",
     "formdata": "^0.10.4",
+    "hashrouter": "^1.1.1",
     "i18next": "^23.5.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -19,7 +20,6 @@
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
-  "main": "./src/index.js",
   "scripts": {
     "start": "react-scripts start ",
     "build": "react-scripts build",

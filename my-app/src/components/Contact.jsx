@@ -1,7 +1,7 @@
 import React from "react";
-import { Header } from "../App";
+import { Header } from "./app.jsx";
 import "../App.css";
-import "../App.js";
+import "./app.jsx";
 
 export function Contact() {
   return (

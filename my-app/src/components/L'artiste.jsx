@@ -1,7 +1,7 @@
 import React from "react";
 import "../App.css";
-import "../App.js";
-import { GaleryHeader as ArtistHeader } from "./Galery.js";
+import "./app.jsx";
+import { GaleryHeader as ArtistHeader } from "./Galery.jsx";
 
 import BiographyImg from "../static/artist-biography.webp";
 import InspirationsImg from "../static/artist-inspirations.webp";

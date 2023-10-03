@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import React from "react";
 import "../App.css";
-import "../App.js";
+import "./app.jsx";
 import axios from "axios";
 import GaleryModal from "./Galerymodal";
 
@@ -356,9 +356,7 @@ export function AdminList() {
   };
   return (
     <div className="admin-list">
-  
       <div className="galery">
-      
         {arrays.map((array) => (
           <div className="array" key={array.id}>
             <div

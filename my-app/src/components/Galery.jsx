@@ -75,9 +75,12 @@ export function GalerieContain() {
   // Get Gallery data from database
   const fetchArrays = async () => {
     try {
-      const response = await axios.get("http://localhost:3030/api/arrays", {
-        mode: "cors",
-      });
+      const response = await axios.get(
+        "https://server.jim-debergue.fr/api/arrays",
+        {
+          mode: "cors",
+        }
+      );
       const data = response.data;
 
       // Sort data for order display

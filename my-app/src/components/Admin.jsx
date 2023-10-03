@@ -54,7 +54,7 @@ export function AdminForm() {
     }
 
     axios
-      .post("http://localhost:3030/api/formdata", formData, {
+      .post("https://server.jim-debergue.fr/api/formdata", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -305,9 +305,12 @@ export function AdminList() {
   // Get Gallery data from database
   const fetchArrays = async () => {
     try {
-      const response = await axios.get("http://localhost:3030/api/arrays", {
-        mode: "cors",
-      });
+      const response = await axios.get(
+        "https://server.jim-debergue.fr/api/arrays",
+        {
+          mode: "cors",
+        }
+      );
       const data = response.data;
 
       // Sort data for order display

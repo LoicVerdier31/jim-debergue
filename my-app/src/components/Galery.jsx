@@ -64,23 +64,19 @@ export function GalerieContain() {
   };
 
   // Use fetchArrays function
-  useEffect(() => {
-    fetchArrays();
-  }, []);
-
+  
   const handleClick = (array) => {
     setSelectedArray(array);
   };
-
+  
   // Get Gallery data from database
+  useEffect(() => {
+    
   const fetchArrays = async () => {
     try {
-      const response = await axios.get(
-        "https://server.jim-debergue.fr/api/arrays",
-        {
-          mode: "cors",
-        }
-      );
+      const response = await axios.get("http://localhost:3030/api/arrays", {
+        mode: "cors",
+      });
       const data = response.data;
 
       // Sort data for order display
@@ -127,6 +123,11 @@ export function GalerieContain() {
       console.error("Erreur lors de la récupération des données : ", error);
     }
   };
+
+  fetchArrays(); // Appelez fetchArrays ici
+
+  }, []);
+  
   return (
     <div>
       <div className="galery-title">

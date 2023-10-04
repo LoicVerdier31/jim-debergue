@@ -27,6 +27,10 @@ app.use(cors(corsOptions));
 // Enable HTTP transport
 app.configure(express.rest());
 
+// HTTP compression
+const compression = require("compression");
+app.use(compression());
+
 // JSON body parser middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());

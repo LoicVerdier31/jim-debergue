@@ -62,16 +62,60 @@ app.get("/", (request, response) => {
 app.post("/api/formdata", upload, async (request, response) => {
   try {
     const formData = request.body;
-    const formFiles = request.files;
+    const temporaryFiles = request.files;
+    // Convert Bytea data to base64
+    const formFiles = {};
+
+    if (temporaryFiles.image !== undefined && temporaryFiles.image !== null) {
+      formFiles.image641 = btoa(
+        new Uint8Array(temporaryFiles.image[0].buffer).reduce(
+          (data, byte) => data + String.fromCharCode(byte),
+          ""
+        )
+      );
+    }
+
+    if (temporaryFiles.image2 !== undefined && temporaryFiles.image2 !== null) {
+      formFiles.image642 = btoa(
+        new Uint8Array(temporaryFiles.image2[0].buffer).reduce(
+          (data, byte) => data + String.fromCharCode(byte),
+          ""
+        )
+      );
+    }
+
+    if (temporaryFiles.image3 !== undefined && temporaryFiles.image3 !== null) {
+      formFiles.image643 = btoa(
+        new Uint8Array(temporaryFiles.image3[0].buffer).reduce(
+          (data, byte) => data + String.fromCharCode(byte),
+          ""
+        )
+      );
+    } else {
+      formFiles.image643 = null;
+    }
+
+    if (temporaryFiles.image4 !== undefined && temporaryFiles.image4 !== null) {
+      formFiles.image644 = btoa(
+        new Uint8Array(temporaryFiles.image4[0].buffer).reduce(
+          (data, byte) => data + String.fromCharCode(byte),
+          ""
+        )
+      );
+    } else {
+      formFiles.image644 = null;
+    }
+
+    // Final array data
     const arrayData = {
       name: formData.name,
       order: formData.order,
       description: formData.description,
       dimension: formData.dimension,
-      image: formFiles["image"] ? formFiles["image"][0].buffer : null,
-      image2: formFiles["image2"] ? formFiles["image2"][0].buffer : null,
-      image3: formFiles["image3"] ? formFiles["image3"][0].buffer : null,
-      image4: formFiles["image4"] ? formFiles["image4"][0].buffer : null,
+      image: formFiles.image641,
+      image2: formFiles.image642,
+      image3: formFiles.image643,
+      image4: formFiles.image644,
       type: formData.type,
       type2: formData.type2,
       serial: formData.serial,

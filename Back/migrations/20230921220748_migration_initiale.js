@@ -9,10 +9,10 @@ exports.up = function (knex) {
     table.string("name").unique();
     table.string("description").unique();
     table.string("dimension");
-    table.specificType("image", "bytea");
-    table.specificType("image2", "bytea");
-    table.specificType("image3", "bytea");
-    table.specificType("image4", "bytea");
+    table.text("image");
+    table.text("image2");
+    table.text("image3");
+    table.text("image4");
     table.string("type");
     table.string("type2");
     table.string("serial");

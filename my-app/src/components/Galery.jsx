@@ -64,70 +64,31 @@ export function GalerieContain() {
   };
 
   // Use fetchArrays function
-  
+
   const handleClick = (array) => {
     setSelectedArray(array);
   };
-  
+
   // Get Gallery data from database
   useEffect(() => {
-    
-  const fetchArrays = async () => {
-    try {
-      const response = await axios.get("http://localhost:3030/api/arrays", {
-        mode: "cors",
-      });
-      const data = response.data;
+    const fetchArrays = async () => {
+      try {
+        const response = await axios.get("http://localhost:3030/api/arrays", {
+          mode: "cors",
+        });
+        const data = response.data;
+        // Sort data for order display
+        const sortedData = data.sort((a, b) => a.order - b.order);
+        // Set state with array
+        setArrays(sortedData);
+      } catch (error) {
+        console.error("Erreur lors de la récupération des données : ", error);
+      }
+    };
 
-      // Sort data for order display
-      const sortedData = data.sort((a, b) => a.order - b.order);
-
-      // Convert Bytea data to base64
-      const arraysWithBase64 = sortedData.map((array) => ({
-        ...array,
-        base64Data1: btoa(
-          new Uint8Array(array.image.data).reduce(
-            (data, byte) => data + String.fromCharCode(byte),
-            ""
-          )
-        ),
-        base64Data2: btoa(
-          new Uint8Array(array.image2.data).reduce(
-            (data, byte) => data + String.fromCharCode(byte),
-            ""
-          )
-        ),
-        base64Data3:
-          array.image3 && array.image3.data
-            ? btoa(
-                new Uint8Array(array.image3.data).reduce(
-                  (data, byte) => data + String.fromCharCode(byte),
-                  ""
-                )
-              )
-            : null,
-        base64Data4:
-          array.image4 && array.image4.data
-            ? btoa(
-                new Uint8Array(array.image4.data).reduce(
-                  (data, byte) => data + String.fromCharCode(byte),
-                  ""
-                )
-              )
-            : null,
-      }));
-
-      // Set up state with got and converted data
-      setArrays(arraysWithBase64);
-    } catch (error) {
-      console.error("Erreur lors de la récupération des données : ", error);
-    }
-  };
-
-  fetchArrays(); // Appelez fetchArrays ici
-
+    fetchArrays();
   }, []);
-  
+
   return (
     <div>
       <div className="galery-title">
@@ -146,12 +107,12 @@ export function GalerieContain() {
             >
               <img
                 className="galerie-images-bas"
-                src={`data:image/webp;base64,${array.base64Data2}`}
+                src={`data:image/webp;base64,${array.image2}`}
                 alt={array.name}
               ></img>
               <img
                 className="galerie-images-haut"
-                src={`data:image/webp;base64,${array.base64Data1}`}
+                src={`data:image/webp;base64,${array.image}`}
                 alt={array.name}
               ></img>
             </div>
@@ -182,7 +143,7 @@ export function ArrayDetails({ array }) {
   };
 
   // Set main pic state
-  const [mainPic, setMainPic] = useState(array.base64Data1);
+  const [mainPic, setMainPic] = useState(array.image);
   const handleMainPic = (e) => {
     const newMainPic = e.target.getAttribute("value");
     setMainPic(newMainPic);
@@ -214,28 +175,28 @@ export function ArrayDetails({ array }) {
           </div>
           <hr></hr>
           <img
-            src={`data:image/webp;base64,${array.base64Data1}`}
-            value={array.base64Data1}
+            src={`data:image/webp;base64,${array.image}`}
+            value={array.image}
             onClick={(e) => handleMainPic(e)}
             alt={array.name}
           ></img>
 
           <img
-            src={`data:image/webp;base64,${array.base64Data2}`}
-            value={array.base64Data2}
+            src={`data:image/webp;base64,${array.image2}`}
+            value={array.image2}
             onClick={(e) => handleMainPic(e)}
             alt={array.name}
           ></img>
 
           <img
-            src={`data:image/webp;base64,${array.base64Data3}`}
+            src={`data:image/webp;base64,${array.image3}`}
             value={array.base64Data3}
             onClick={(e) => handleMainPic(e)}
             alt={array.name}
           ></img>
 
           <img
-            src={`data:image/webp;base64,${array.base64Data4}`}
+            src={`data:image/webp;base64,${array.image4}`}
             value={array.base64Data4}
             onClick={(e) => handleMainPic(e)}
             alt={array.name}

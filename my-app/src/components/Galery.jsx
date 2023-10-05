@@ -1,11 +1,11 @@
 import React from "react";
 import "../App.css";
 import "./app.jsx";
-import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import GaleryModal from "./Galerymodal";
 import MainpicModal from "./MainpicModal";
 import { Link } from "react-router-dom";
+import { useCustomState } from "./ImportData";
 
 export function Galery() {
   return (
@@ -50,7 +50,7 @@ export function GaleryMenu() {
 }
 
 export function GalerieContain() {
-  const [arrays, setArrays] = useState([]);
+  const { arrays } = useCustomState();
   const [selectedArray, setSelectedArray] = useState(null);
 
   // Opening modal for Array-details
@@ -69,31 +69,9 @@ export function GalerieContain() {
     setSelectedArray(array);
   };
 
-  // Get Gallery data from database
-  useEffect(() => {
-    const fetchArrays = async () => {
-      try {
-        const response = await axios.get("http://localhost:3030/api/arrays", {
-          mode: "cors",
-        });
-        const data = response.data;
-        // Sort data for order display
-        const sortedData = data.sort((a, b) => a.order - b.order);
-        // Set state with array
-        setArrays(sortedData);
-      } catch (error) {
-        console.error("Erreur lors de la récupération des données : ", error);
-      }
-    };
-
-    fetchArrays();
-  }, []);
-
   return (
-    <div>
-      <div className="galery-title">
-        <p>Galerie</p>
-      </div>
+    <div className="galery-page">
+      <p className="galery-title">Galerie</p>
       <div className="galery">
         {arrays.map((array) => (
           <div className="array" key={array.id}>

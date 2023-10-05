@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import React from "react";
 import "../App.css";
 import "./app.jsx";
 import axios from "axios";
 import GaleryModal from "./Galerymodal";
+import { useCustomState } from "./ImportData";
 
 export function Admin() {
   return (
@@ -280,45 +281,23 @@ export function AdminForm() {
 }
 
 export function AdminList() {
-  const [arrays, setArrays] = useState([]);
+  const { arrays } = useCustomState();
   const [selectedArray, setSelectedArray] = useState(null);
-
-  // Opening modal for Array-details
   const [isModalOpen, setModalOpen] = useState(false);
 
   const openModal = () => {
     setModalOpen(true);
   };
+
   const closeModal = () => {
     setModalOpen(false);
   };
 
-  // Use fetchArrays function
-  useEffect(() => {
-    fetchArrays();
-  }, []);
-
   const handleClick = (array) => {
     setSelectedArray(array);
+    openModal();
   };
 
-  // Get Gallery data from database
-  const fetchArrays = async () => {
-    try {
-      const response = await axios.get("http://localhost:3030/api/arrays", {
-        mode: "cors",
-      });
-      const data = response.data;
-
-      // Sort data for order display
-      const sortedData = data.sort((a, b) => a.order - b.order);
-
-      // Set up state with got and converted data
-      setArrays(sortedData);
-    } catch (error) {
-      console.error("Erreur lors de la récupération des données : ", error);
-    }
-  };
   return (
     <div className="admin-list">
       <div className="galery">
@@ -327,10 +306,7 @@ export function AdminList() {
             <div
               className="fondu"
               value={array}
-              onClick={() => {
-                handleClick(array);
-                openModal();
-              }}
+              onClick={() => handleClick(array)}
             >
               <img
                 className="galerie-images-bas"
@@ -431,3 +407,5 @@ export function AdminArray({ array }) {
     </div>
   );
 }
+
+export default Admin;

@@ -73,6 +73,8 @@ app.post("/api/formdata", upload, async (request, response) => {
           ""
         )
       );
+    } else {
+      formFiles.image641 = null;
     }
 
     if (temporaryFiles.image2 !== undefined && temporaryFiles.image2 !== null) {
@@ -82,6 +84,8 @@ app.post("/api/formdata", upload, async (request, response) => {
           ""
         )
       );
+    } else {
+      formFiles.image642 = null;
     }
 
     if (temporaryFiles.image3 !== undefined && temporaryFiles.image3 !== null) {
@@ -124,6 +128,34 @@ app.post("/api/formdata", upload, async (request, response) => {
     };
 
     const createdArray = await arraysService.create(arrayData);
+
+    response.status(201).json(createdArray);
+  } catch (error) {
+    console.error(error);
+    response
+      .status(500)
+      .json({ error: "Erreur lors du traitement des données" });
+  }
+});
+app.post("/api/modif", upload, async (request, response) => {
+  try {
+    const formData = request.body;
+
+    // Final array data
+    const arrayData = {
+      id: formData.id,
+      name: formData.name,
+      order: formData.order,
+      description: formData.description,
+      dimension: formData.dimension,
+      type: formData.type,
+      type2: formData.type2,
+      serial: formData.serial,
+      year: formData.year,
+      price: formData.price,
+    };
+
+    const createdArray = await arraysService.patch(arrayData.id, arrayData);
 
     response.status(201).json(createdArray);
   } catch (error) {

@@ -105,7 +105,6 @@ export function AdminForm() {
             ></input>
             <br></br>
             <br></br>
-
             <label htmlFor="order">Ordre de rangement (obligatoire): </label>
             <input
               type="text"
@@ -119,7 +118,6 @@ export function AdminForm() {
             ></input>
             <br></br>
             <br></br>
-
             <label htmlFor="description">Description (obligatoire): </label>
             <textarea
               id="description"
@@ -133,7 +131,6 @@ export function AdminForm() {
             ></textarea>
             <br></br>
             <br></br>
-
             <label htmlFor="dimension">Dimension (obligatoire): </label>
             <input
               type="text"
@@ -147,7 +144,6 @@ export function AdminForm() {
             ></input>
             <br></br>
             <br></br>
-
             <label htmlFor="image">Image (obligatoire): </label>
             <input
               type="file"
@@ -161,7 +157,6 @@ export function AdminForm() {
             ></input>
             <br></br>
             <br></br>
-
             <label htmlFor="image2">Image avec fond (obligatoire): </label>
             <input
               type="file"
@@ -175,7 +170,6 @@ export function AdminForm() {
             ></input>
             <br></br>
             <br></br>
-
             <label htmlFor="image3">Image 2 : </label>
             <input
               type="file"
@@ -188,7 +182,6 @@ export function AdminForm() {
             ></input>
             <br></br>
             <br></br>
-
             <label htmlFor="image4">Image 3 : </label>
             <input
               type="file"
@@ -201,7 +194,6 @@ export function AdminForm() {
             ></input>
             <br></br>
             <br></br>
-
             <label htmlFor="type">type (obligatoire): </label>
             <input
               type="text"
@@ -215,7 +207,6 @@ export function AdminForm() {
             ></input>
             <br></br>
             <br></br>
-
             <label htmlFor="type2">type 2 : </label>
             <input
               type="text"
@@ -226,9 +217,9 @@ export function AdminForm() {
                 handleChange(e);
               }}
             ></input>
+            type="text" id="name" name="name"
             <br></br>
             <br></br>
-
             <label htmlFor="serial">Série : </label>
             <input
               type="text"
@@ -241,7 +232,6 @@ export function AdminForm() {
             ></input>
             <br></br>
             <br></br>
-
             <label htmlFor="year">Année de création : </label>
             <input
               type="text"
@@ -254,7 +244,6 @@ export function AdminForm() {
             ></input>
             <br></br>
             <br></br>
-
             <label htmlFor="price">Prix : </label>
             <input
               type="text"
@@ -291,6 +280,7 @@ export function AdminList() {
 
   const closeModal = () => {
     setModalOpen(false);
+    window.location.reload();
   };
 
   const handleClick = (array) => {
@@ -342,68 +332,337 @@ export function AdminArray({ array }) {
     const newMainPic = e.target.getAttribute("value");
     setMainPic(newMainPic);
   };
+
+  // States for modifiables fields
+  const [modifiedArray, setModifiedArray] = useState(array);
+
+  // États pour suivre si les champs sont en mode d'édition ou non
+  const [editDescription, setEditDescription] = useState(false);
+  const [editOrder, setEditOrder] = useState(false);
+  const [editYear, setEditYear] = useState(false);
+  const [editDimension, setEditDimension] = useState(false);
+  const [editName, setEditName] = useState(false);
+  const [editType, setEditType] = useState(false);
+  const [editType2, setEditType2] = useState(false);
+  const [editPrice, setEditPrice] = useState(false);
+  const [editSerial, setEditSerial] = useState(false);
+
+  // Gestionnaires pour basculer le mode d'édition des champs
+  const toggleEditName = () => {
+    setEditName(!editName);
+  };
+  const toggleEditOrder = () => {
+    setEditOrder(!editOrder);
+  };
+  const toggleEditDescription = () => {
+    setEditDescription(!editDescription);
+  };
+  const toggleEditYear = () => {
+    setEditYear(!editYear);
+  };
+  const toggleEditDimension = () => {
+    setEditDimension(!editDimension);
+  };
+  const toggleEditType = () => {
+    setEditType(!editType);
+  };
+  const toggleEditType2 = () => {
+    setEditType2(!editType2);
+  };
+  const toggleEditPrice = () => {
+    setEditPrice(!editPrice);
+  };
+  const toggleEditSerial = () => {
+    setEditSerial(!editSerial);
+  };
+
+  // Fonction pour mettre à jour les modifications
+  const handleSave = (e) => {
+    e.preventDefault();
+    const updatedArray = {
+      id: modifiedArray.id,
+      name: modifiedArray.name,
+      order: modifiedArray.order,
+      year: modifiedArray.year,
+      description: modifiedArray.description,
+      dimension: modifiedArray.dimension,
+      type: modifiedArray.type,
+      type2: modifiedArray.type2,
+      price: modifiedArray.price,
+      serial: modifiedArray.serial,
+    };
+
+    axios.post("http://localhost:3030/api/modif", updatedArray, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    setModifiedArray(updatedArray);
+    console.log(modifiedArray);
+  };
   return (
     <div className="array-page">
-      <p className="array-title">{array.name}</p>
+      {/* modification du nom */}
+      <form
+        method="POST"
+        encType="multipart/form-data"
+        onSubmit={(e) => {
+          handleSave(e);
+        }}
+      >
+        <div>
+          {editName ? (
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={modifiedArray.name}
+              onChange={(e) =>
+                setModifiedArray({
+                  ...modifiedArray,
+                  name: e.target.value,
+                })
+              }
+            ></input>
+          ) : (
+            <span className="array-title">{modifiedArray.name}</span>
+          )}
+          <button onClick={toggleEditName}>
+            {editName ? "Enregistrer" : "Modifier"}
+          </button>
+        </div>
+        <div className="array-pic">
+          <img
+            className="array-main-pic"
+            src={`data:image/webp;base64,${mainPic}`}
+            alt={array.name}
+          ></img>
+          <div className="array-info">
+            {/* modification de l'ordre */}
 
-      <div className="array-pic">
-        <img
-          className="array-main-pic"
-          src={`data:image/webp;base64,${mainPic}`}
-          alt={array.name}
-        ></img>
-        <div className="array-info">
-          <div className="array-description">
-            <p>Année (visible):</p>
-            <p>Description (visible):</p> <br></br> {array.description}
-          </div>
-          <br></br>
-          <br></br>
-          <div className="array-dimension">
-            <p>Dimensions (visibles) :</p>
+            <div>
+              <p>Ordre :</p>
+              {editOrder ? (
+                <input
+                  type="text"
+                  id="order"
+                  name="order"
+                  value={modifiedArray.order}
+                  onChange={(e) =>
+                    setModifiedArray({
+                      ...modifiedArray,
+                      order: e.target.value,
+                    })
+                  }
+                ></input>
+              ) : (
+                <span>{modifiedArray.order}</span>
+              )}
+              <button onClick={toggleEditOrder}>
+                {editOrder ? "Enregistrer" : "Modifier"}
+              </button>
+            </div>
+            {/* modification de l'année */}
+            <div>
+              <p>Année (visible):</p>
+              {editYear ? (
+                <input
+                  type="text"
+                  id="year"
+                  name="year"
+                  value={modifiedArray.year}
+                  onChange={(e) =>
+                    setModifiedArray({
+                      ...modifiedArray,
+                      year: e.target.value,
+                    })
+                  }
+                ></input>
+              ) : (
+                <span>{modifiedArray.year}</span>
+              )}
+              <button onClick={toggleEditYear}>
+                {editYear ? "Enregistrer" : "Modifier"}
+              </button>
+            </div>
+
+            {/* modification de la description */}
+
+            <div>
+              <p>Description (visible):</p>
+              {editDescription ? (
+                <textarea
+                  value={modifiedArray.description}
+                  onChange={(e) =>
+                    setModifiedArray({
+                      ...modifiedArray,
+                      description: e.target.value,
+                    })
+                  }
+                ></textarea>
+              ) : (
+                <span>{modifiedArray.description}</span>
+              )}
+              <button onClick={toggleEditDescription}>
+                {editDescription ? "Enregistrer" : "Modifier"}
+              </button>
+            </div>
             <br></br>
-            {array.dimension}
-          </div>
-          <hr></hr>
-          <img
-            src={`data:image/webp;base64,${array.image}`}
-            value={array.base64Data1}
-            onClick={(e) => handleMainPic(e)}
-            alt={array.name}
-          ></img>
+            <br></br>
+            {/* modification de la dimension */}
 
-          <img
-            src={`data:image/webp;base64,${array.image2}`}
-            value={array.base64Data2}
-            onClick={(e) => handleMainPic(e)}
-            alt={array.name}
-          ></img>
+            <div>
+              <p>Dimensions (visible):</p>
+              {editDimension ? (
+                <input
+                  type="text"
+                  id="dimension"
+                  name="dimension"
+                  value={modifiedArray.dimension}
+                  onChange={(e) =>
+                    setModifiedArray({
+                      ...modifiedArray,
+                      dimension: e.target.value,
+                    })
+                  }
+                ></input>
+              ) : (
+                <span>{modifiedArray.dimension}</span>
+              )}
+              <button onClick={toggleEditDimension}>
+                {editDimension ? "Enregistrer" : "Modifier"}
+              </button>
+            </div>
 
-          <img
-            src={`data:image/webp;base64,${array.image3}`}
-            value={array.base64Data3}
-            onClick={(e) => handleMainPic(e)}
-            alt={array.name}
-          ></img>
+            <hr></hr>
+            <img
+              src={`data:image/webp;base64,${array.image}`}
+              value={array.image}
+              onClick={(e) => handleMainPic(e)}
+              alt={array.name}
+            ></img>
 
-          <img
-            src={`data:image/webp;base64,${array.image4}`}
-            value={array.base64Data4}
-            onClick={(e) => handleMainPic(e)}
-            alt={array.name}
-          ></img>
-          <div className="array-description">
-            <p>Prix :</p>
-            {array.price}
-            <p>Type 1 :</p>
-            {array.type}
-            <p>Type 2 :</p>
-            {array.type2}
-            <p>Série :</p>
-            {array.serial}
+            <img
+              src={`data:image/webp;base64,${array.image2}`}
+              value={array.image2}
+              onClick={(e) => handleMainPic(e)}
+              alt={array.name}
+            ></img>
+
+            <img
+              src={`data:image/webp;base64,${array.image3}`}
+              value={array.image3}
+              onClick={(e) => handleMainPic(e)}
+              alt={array.name}
+            ></img>
+
+            <img
+              src={`data:image/webp;base64,${array.image4}`}
+              value={array.image4}
+              onClick={(e) => handleMainPic(e)}
+              alt={array.name}
+            ></img>
+            <div className="array-description">
+              {/* modification du type  */}
+
+              <div>
+                <p>Type 1 :</p>
+                {editType ? (
+                  <input
+                    type="text"
+                    id="type"
+                    name="type"
+                    value={modifiedArray.type}
+                    onChange={(e) =>
+                      setModifiedArray({
+                        ...modifiedArray,
+                        type: e.target.value,
+                      })
+                    }
+                  ></input>
+                ) : (
+                  <span>{modifiedArray.type}</span>
+                )}
+                <button onClick={toggleEditType}>
+                  {editType ? "Enregistrer" : "Modifier"}
+                </button>
+              </div>
+              {/* modification du Type 2 */}
+
+              <div>
+                <p>Type 2:</p>
+                {editType2 ? (
+                  <input
+                    type="text"
+                    id="type2"
+                    name="type2"
+                    value={modifiedArray.type2}
+                    onChange={(e) =>
+                      setModifiedArray({
+                        ...modifiedArray,
+                        type2: e.target.value,
+                      })
+                    }
+                  ></input>
+                ) : (
+                  <span>{modifiedArray.type2}</span>
+                )}
+                <button onClick={toggleEditType2}>
+                  {editType2 ? "Enregistrer" : "Modifier"}
+                </button>
+              </div>
+              {/* modification du prix */}
+
+              <div>
+                <p>Prix :</p>
+                {editPrice ? (
+                  <input
+                    type="text"
+                    id="price"
+                    name="price"
+                    value={modifiedArray.price}
+                    onChange={(e) =>
+                      setModifiedArray({
+                        ...modifiedArray,
+                        price: e.target.value,
+                      })
+                    }
+                  ></input>
+                ) : (
+                  <span>{modifiedArray.price}</span>
+                )}
+                <button onClick={toggleEditPrice}>
+                  {editPrice ? "Enregistrer" : "Modifier"}
+                </button>
+              </div>
+              {/* modification de la Série */}
+
+              <div>
+                <p>Serie :</p>
+                {editSerial ? (
+                  <input
+                    type="text"
+                    id="serial"
+                    name="serial"
+                    value={modifiedArray.serial}
+                    onChange={(e) =>
+                      setModifiedArray({
+                        ...modifiedArray,
+                        serial: e.target.value,
+                      })
+                    }
+                  ></input>
+                ) : (
+                  <span>{modifiedArray.serial}</span>
+                )}
+                <button onClick={toggleEditSerial}>
+                  {editSerial ? "Enregistrer" : "Modifier"}
+                </button>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      </form>
     </div>
   );
 }

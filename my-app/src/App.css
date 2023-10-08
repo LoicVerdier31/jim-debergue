@@ -333,7 +333,7 @@ a:visited {
   position: absolute;
   height: 100%;
   width: 100%;
-  background-image: url(./static/bg-artiste.JPG);
+  background-image: url(./static/bg-artiste.webp);
   background-repeat: no-repeat;
   background-size: 100%;
   background-attachment: fixed;
@@ -422,8 +422,7 @@ a:visited {
   justify-content: space-between;
   padding: 10%;
 }
-.groups img {
-}
+
 .groups p {
   color: white;
 }

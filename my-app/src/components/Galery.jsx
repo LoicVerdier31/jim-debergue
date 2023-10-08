@@ -68,7 +68,7 @@ export function GalerieContain() {
   const handleClick = (array) => {
     setSelectedArray(array);
   };
-  
+
   return (
     <div className="galery-page">
       <p className="galery-title">Galerie</p>

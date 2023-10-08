@@ -86,15 +86,17 @@ export function LastArrays() {
   const handleClick = (array) => {
     setSelectedArray(array);
   };
- // Set last arrays
- useEffect(() => {
-  const sortedData = arrays.sort((a, b) => a.created_at - b.created_at); 
-  const lastCreatedAt = sortedData.slice(-3); 
-  setLastArrays(lastCreatedAt) 
-   
- }) 
+  // Set last arrays
+  useEffect(() => {
+    const sortedData = [...arrays].sort((a, b) => {
+      const dateA = new Date(a.created_at);
+      const dateB = new Date(b.created_at);
+      return dateB - dateA;
+    });
+    const lastCreatedAt = sortedData.slice(-3);
+    setLastArrays(lastCreatedAt);
+  }, [arrays]);
 
-  
   return (
     <div className="last-work">
       <p className="main-text-title">Les dernieres oeuvres</p>

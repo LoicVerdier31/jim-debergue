@@ -59,6 +59,7 @@ app.get("/", (request, response) => {
   response.send("Bienvenue sur le serveur !!");
 });
 
+// Crate new array
 app.post("/api/formdata", upload, async (request, response) => {
   try {
     const formData = request.body;
@@ -137,6 +138,7 @@ app.post("/api/formdata", upload, async (request, response) => {
       .json({ error: "Erreur lors du traitement des données" });
   }
 });
+// modifie array
 app.post("/api/modif", upload, async (request, response) => {
   try {
     const formData = request.body;
@@ -164,5 +166,27 @@ app.post("/api/modif", upload, async (request, response) => {
       .status(500)
       .json({ error: "Erreur lors du traitement des données" });
   }
-}); // Start the server on port 3030
+});
+// delete array
+app.post("/api/delete", upload, async (request, response) => {
+  try {
+    const formData = request.body;
+
+    // Final array data
+    const arrayData = {
+      id: formData.id,
+    };
+
+    const createdArray = await arraysService.remove(arrayData.id);
+
+    response.status(201).json(createdArray);
+  } catch (error) {
+    console.error(error);
+    response
+      .status(500)
+      .json({ error: "Erreur lors de la suppression des données" });
+  }
+});
+
+// Start the server on port 3030
 app.listen(3030, () => console.log("listening on port 3030"));

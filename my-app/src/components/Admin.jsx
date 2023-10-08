@@ -5,11 +5,13 @@ import "./app.jsx";
 import axios from "axios";
 import GaleryModal from "./Galerymodal";
 import { useCustomState } from "./ImportData";
+import { Menu } from "./app.jsx";
 
 export function Admin() {
   return (
     <div className="admin-page">
       <div>
+        <Menu></Menu>
         <AdminForm></AdminForm>
         <div>
           <AdminList></AdminList>
@@ -77,6 +79,7 @@ export function AdminForm() {
           price: "",
         });
       });
+    window.location.reload();
   };
 
   return (
@@ -217,7 +220,6 @@ export function AdminForm() {
                 handleChange(e);
               }}
             ></input>
-            type="text" id="name" name="name"
             <br></br>
             <br></br>
             <label htmlFor="serial">Série : </label>
@@ -333,10 +335,10 @@ export function AdminArray({ array }) {
     setMainPic(newMainPic);
   };
 
-  // States for modifiables fields
+  // State to create a modified array object
   const [modifiedArray, setModifiedArray] = useState(array);
 
-  // États pour suivre si les champs sont en mode d'édition ou non
+  // States for edition mode
   const [editDescription, setEditDescription] = useState(false);
   const [editOrder, setEditOrder] = useState(false);
   const [editYear, setEditYear] = useState(false);
@@ -347,7 +349,7 @@ export function AdminArray({ array }) {
   const [editPrice, setEditPrice] = useState(false);
   const [editSerial, setEditSerial] = useState(false);
 
-  // Gestionnaires pour basculer le mode d'édition des champs
+  // handler to make fields on modif or not
   const toggleEditName = () => {
     setEditName(!editName);
   };
@@ -376,7 +378,7 @@ export function AdminArray({ array }) {
     setEditSerial(!editSerial);
   };
 
-  // Fonction pour mettre à jour les modifications
+  // Function to set up modifications
   const handleSave = (e) => {
     e.preventDefault();
     const updatedArray = {
@@ -398,7 +400,18 @@ export function AdminArray({ array }) {
       },
     });
     setModifiedArray(updatedArray);
-    console.log(modifiedArray);
+  };
+  // Function to delete arrays
+  const handleDelete = (e) => {
+    const deletedArray = {
+      id: array.id,
+    };
+    axios.post("http://localhost:3030/api/delete", deletedArray, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    window.location.reload();
   };
   return (
     <div className="array-page">
@@ -662,6 +675,7 @@ export function AdminArray({ array }) {
             </div>
           </div>
         </div>
+        <button onClick={(e) => handleDelete()}>Supprimer le tableau</button>
       </form>
     </div>
   );

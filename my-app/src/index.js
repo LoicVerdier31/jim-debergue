@@ -10,7 +10,7 @@ import { Contact } from "./components/Contact.jsx";
 import { Galery } from "./components/Galery.jsx";
 import { Admin } from "./components/Admin.jsx";
 
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

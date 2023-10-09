@@ -100,7 +100,6 @@ export function AdminForm() {
           price: "",
         });
       });
-    window.location.reload();
   };
 
   return (

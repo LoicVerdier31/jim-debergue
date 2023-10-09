@@ -5,6 +5,8 @@ import { ArrayDetails as LastArraysDetails } from "./Galery";
 import GaleryModal from "./Galerymodal";
 import { Link } from "react-router-dom";
 import { useCustomState } from "./ImportData";
+import axios from "axios";
+import { allowedIpAdress } from "../AllowedIp";
 
 //images
 import peintre from "../static/peintre-accueil.JPG";
@@ -21,20 +23,57 @@ export function Header() {
 }
 
 export function Menu() {
-  return (
-    <div className="menu">
-      <hr></hr>
-      <Link to="/Galery" className="menu-item">
-        Galerie
-      </Link>
-      <Link to="/Artiste" className="menu-item">
-        L'artiste
-      </Link>
-      <Link to="/Contact" className="menu-item">
-        Contact
-      </Link>
-    </div>
-  );
+  const [ipAddress, setIpAddress] = useState("");
+
+  useEffect(() => {
+    axios
+      .get("https://api.ipify.org?format=json")
+      .then((response) => {
+        const ip = response.data.ip;
+        setIpAddress(ip);
+      })
+      .catch((error) => {
+        console.error(
+          "Erreur lors de la récupération de l'adresse IP :",
+          error
+        );
+      });
+  }, [ipAddress]);
+  if (ipAddress === allowedIpAdress) {
+    return (
+      <div className="menu">
+        <hr></hr>
+        <Link to="/admin" className="menu-item">
+          Admin
+        </Link>
+
+        <Link to="/Galery" className="menu-item">
+          Galerie
+        </Link>
+        <Link to="/Artiste" className="menu-item">
+          L'artiste
+        </Link>
+        <Link to="/Contact" className="menu-item">
+          Contact
+        </Link>
+      </div>
+    );
+  } else {
+    return (
+      <div className="menu">
+        <hr></hr>
+        <Link to="/Galery" className="menu-item">
+          Galerie
+        </Link>
+        <Link to="/Artiste" className="menu-item">
+          L'artiste
+        </Link>
+        <Link to="/Contact" className="menu-item">
+          Contact
+        </Link>
+      </div>
+    );
+  }
 }
 
 export function ArtistMain() {
@@ -143,6 +182,7 @@ export function App() {
   return (
     <div className="App">
       <Header></Header>
+
       <ArtistMain></ArtistMain>
       <LastArrays></LastArrays>
     </div>

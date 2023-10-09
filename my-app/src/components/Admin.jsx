@@ -5,18 +5,39 @@ import "./app.jsx";
 import axios from "axios";
 import GaleryModal from "./Galerymodal";
 import { useCustomState } from "./ImportData";
-import { Menu } from "./app.jsx";
+import { Link } from "react-router-dom";
 
 export function Admin() {
   return (
     <div className="admin-page">
       <div>
-        <Menu></Menu>
+        <AdminMenu></AdminMenu>
         <AdminForm></AdminForm>
         <div>
           <AdminList></AdminList>
         </div>
       </div>
+    </div>
+  );
+}
+
+export function AdminMenu() {
+  return (
+    <div className="admin-menu">
+      <hr></hr>
+      <Link className="galery-menu-item" to="/jim-debergue">
+        Accueil
+      </Link>
+      <Link className="galery-menu-item" to="/Galery">
+        Galerie
+      </Link>
+
+      <Link className="galery-menu-item" to="/Artiste">
+        L'artiste
+      </Link>
+      <Link className="galery-menu-item" to="/Contact">
+        Contact
+      </Link>
     </div>
   );
 }
@@ -57,7 +78,7 @@ export function AdminForm() {
     }
 
     axios
-      .post("http://localhost:3030/api/formdata", formData, {
+      .post("https://server.jim-debergue.fr/api/formdata", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -394,7 +415,7 @@ export function AdminArray({ array }) {
       serial: modifiedArray.serial,
     };
 
-    axios.post("http://localhost:3030/api/modif", updatedArray, {
+    axios.post("https://server.jim-debergue.fr/api/modif", updatedArray, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -406,7 +427,7 @@ export function AdminArray({ array }) {
     const deletedArray = {
       id: array.id,
     };
-    axios.post("http://localhost:3030/api/delete", deletedArray, {
+    axios.post("https://server.jim-debergue.fr/api/delete", deletedArray, {
       headers: {
         "Content-Type": "application/json",
       },

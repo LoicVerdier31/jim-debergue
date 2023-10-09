@@ -99,6 +99,47 @@ a:visited {
   color: black;
   padding-top: 1%;
 }
+@media screen and (max-width: 767px) {
+  .App {
+    background-size: 150%;
+    height: 70%;
+  }
+
+  .menu {
+    width: 80%;
+  }
+  .menu-item {
+    padding: 30px;
+    font-size: 200%;
+  }
+  hr {
+    margin-top: 50px;
+  }
+
+  .artist-main {
+    flex-direction: column;
+  }
+
+  .peintre-pic {
+    width: calc(100% - 1%);
+    padding-bottom: 10%;
+  }
+  .main-text-title {
+    font-size: 200%;
+  }
+  .main-text {
+    width: calc(100% - 5%);
+  }
+
+  .last-work {
+    background-color: white;
+    position: relative;
+  }
+  .last-work .main-text-title {
+    color: black;
+    padding-top: 1%;
+  }
+}
 
 /* Galerie */
 .galery-page {
@@ -126,7 +167,6 @@ a:visited {
   width: 100%;
   opacity: 90%;
   margin-bottom: 30%;
-  
 }
 
 .galery-menu {
@@ -327,7 +367,154 @@ a:visited {
   font-size: 400%;
   cursor: pointer;
 }
+@media screen and (max-width: 767px) {
+  .galery-page {
+    background-size: 130%;
+  }
+  .galery-menu {
+    width: 80%;
+  }
+  .galery-menu-item {
+    padding: 30px;
+  }
+  .galery-menu a {
+    font-size: 200%;
+  }
 
+  .galery-title {
+    padding-top: 10%;
+  }
+
+  .array {
+    width: calc(100% - 1%);
+  }
+
+  .array div {
+    width: 100%;
+    height: auto;
+  }
+  .g-array-title {
+    font-size: 150%;
+    font-weight: 250;
+  }
+  .g-array-dimension {
+    font-size: 80%;
+    font-weight: 100;
+  }
+
+  .array-page {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    background-color: white;
+    justify-content: space-between;
+    margin: 5%;
+    z-index: 2;
+  }
+
+  .array-title {
+    text-align: center;
+    width: 100%;
+    font-size: 200%;
+    font-weight: 100;
+    color: black;
+  }
+
+  .array-main-pic {
+    flex-basis: calc(50% - 5%);
+    max-width: 50%;
+    text-align: right;
+    margin-bottom: 200px;
+    box-shadow: 3px 3px rgb(182, 182, 68), -1em -0.2em 0.9em rgb(106, 106, 61);
+  }
+
+  .modal-main-pic {
+    position: relative;
+    height: 100%;
+    overflow: scroll;
+    z-index: 3;
+  }
+  ::-webkit-scrollbar {
+    width: 0.7em;
+  }
+
+  .zoom-pic {
+    width: 100%;
+    height: 100%;
+    transition: transform 0.3s;
+  }
+
+  .modal-main-pic:hover .zoom-pic {
+    transform: scale(1.8);
+    cursor: pointer;
+  }
+
+  .array-pic {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    flex-wrap: wrap;
+    background-color: white;
+    justify-content: space-between;
+  }
+  .array-pic img[src="data:image/webp;base64,null"] {
+    display: none;
+  }
+
+  .array-pic img {
+    width: 10%;
+    margin-right: 5%;
+    cursor: pointer;
+  }
+
+  .array-info {
+    width: calc(50% - 0%);
+    background-color: white;
+    font-size: large;
+    font-weight: 200;
+    color: black;
+    position: relative;
+    text-align: left;
+    padding-bottom: 30%;
+  }
+  .array-info p {
+    font-weight: 400;
+  }
+
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .modal {
+    background: white;
+    padding: 10px;
+    position: relative;
+    max-height: 90%;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    overflow: scroll;
+  }
+
+  .close-button {
+    position: absolute;
+    top: 10%;
+    right: 5%;
+    background: none;
+    border: none;
+    font-size: 400%;
+    cursor: pointer;
+  }
+}
 /* L'Artiste  */
 .artist-page {
   text-align: center;
@@ -471,7 +658,9 @@ a:visited {
   padding: 0p;
   margin: 0;
 }
-
+.admin-menu {
+  padding-top: 20%;
+}
 .admin-title {
   font-size: 200%;
   padding-top: 10%;

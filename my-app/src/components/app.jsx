@@ -130,7 +130,7 @@ export function LastArrays() {
     const sortedData = [...arrays].sort((a, b) => {
       const dateA = new Date(a.created_at);
       const dateB = new Date(b.created_at);
-      return dateB - dateA;
+      return dateA - dateB;
     });
     const lastCreatedAt = sortedData.slice(-3);
     setLastArrays(lastCreatedAt);

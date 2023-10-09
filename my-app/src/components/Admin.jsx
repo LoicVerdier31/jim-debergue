@@ -8,14 +8,14 @@ import { useCustomState } from "./ImportData";
 import { Link } from "react-router-dom";
 
 export function Admin() {
+  const { arrays } = useCustomState();
   return (
     <div className="admin-page">
       <div>
         <AdminMenu></AdminMenu>
         <AdminForm></AdminForm>
-        <div>
-          <AdminList></AdminList>
-        </div>
+
+        <AdminList arrays={arrays}></AdminList>
       </div>
     </div>
   );
@@ -42,7 +42,7 @@ export function AdminMenu() {
   );
 }
 
-export function AdminForm() {
+export function AdminForm({ onFormSubmit }) {
   const [array, setArray] = useState({
     name: "",
     order: "",
@@ -291,21 +291,16 @@ export function AdminForm() {
   );
 }
 
-export function AdminList() {
-  const { arrays } = useCustomState();
-  const [arrayList, setArrayList] = useState([]);
+export function AdminList({ arrays }) {
   const [selectedArray, setSelectedArray] = useState(null);
   const [isModalOpen, setModalOpen] = useState(false);
-  useEffect(() => {
-    setArrayList(arrays);
-  }, [arrays]);
+
   const openModal = () => {
     setModalOpen(true);
   };
 
   const closeModal = () => {
     setModalOpen(false);
-    setArrayList(arrays);
   };
 
   const handleClick = (array) => {
@@ -316,7 +311,7 @@ export function AdminList() {
   return (
     <div className="admin-list">
       <div className="galery">
-        {arrayList.map((array) => (
+        {arrays.map((array) => (
           <div className="array" key={array.id}>
             <div
               className="fondu"
@@ -417,7 +412,7 @@ export function AdminArray({ array }) {
       serial: modifiedArray.serial,
     };
 
-    axios.post("https://server.jim-debergue.fr/api/modif", updatedArray, {
+    axios.post("http://localhost:3030/api/modif", updatedArray, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -463,7 +458,11 @@ export function AdminArray({ array }) {
             <span className="array-title">{modifiedArray.name}</span>
           )}
           <button onClick={toggleEditName}>
-            {editName ? "Enregistrer" : "Modifier"}
+            {editName ? (
+              <button className="save-icon"></button>
+            ) : (
+              <button className="modifier"></button>
+            )}
           </button>
         </div>
         <div className="array-pic">
@@ -494,7 +493,11 @@ export function AdminArray({ array }) {
                 <span>{modifiedArray.order}</span>
               )}
               <button onClick={toggleEditOrder}>
-                {editOrder ? "Enregistrer" : "Modifier"}
+                {editOrder ? (
+                  <button className="save-icon"></button>
+                ) : (
+                  <button className="modifier"></button>
+                )}
               </button>
             </div>
             {/* modification de l'année */}
@@ -517,7 +520,11 @@ export function AdminArray({ array }) {
                 <span>{modifiedArray.year}</span>
               )}
               <button onClick={toggleEditYear}>
-                {editYear ? "Enregistrer" : "Modifier"}
+                {editYear ? (
+                  <button className="save-icon"></button>
+                ) : (
+                  <button className="modifier"></button>
+                )}
               </button>
             </div>
 
@@ -539,7 +546,11 @@ export function AdminArray({ array }) {
                 <span>{modifiedArray.description}</span>
               )}
               <button onClick={toggleEditDescription}>
-                {editDescription ? "Enregistrer" : "Modifier"}
+                {editDescription ? (
+                  <button className="save-icon"></button>
+                ) : (
+                  <button className="modifier"></button>
+                )}
               </button>
             </div>
             <br></br>
@@ -565,7 +576,11 @@ export function AdminArray({ array }) {
                 <span>{modifiedArray.dimension}</span>
               )}
               <button onClick={toggleEditDimension}>
-                {editDimension ? "Enregistrer" : "Modifier"}
+                {editDimension ? (
+                  <button className="save-icon"></button>
+                ) : (
+                  <button className="modifier"></button>
+                )}
               </button>
             </div>
 
@@ -619,7 +634,11 @@ export function AdminArray({ array }) {
                   <span>{modifiedArray.type}</span>
                 )}
                 <button onClick={toggleEditType}>
-                  {editType ? "Enregistrer" : "Modifier"}
+                  {editType ? (
+                    <button className="save-icon"></button>
+                  ) : (
+                    <button className="modifier"></button>
+                  )}
                 </button>
               </div>
               {/* modification du Type 2 */}
@@ -643,7 +662,11 @@ export function AdminArray({ array }) {
                   <span>{modifiedArray.type2}</span>
                 )}
                 <button onClick={toggleEditType2}>
-                  {editType2 ? "Enregistrer" : "Modifier"}
+                  {editType2 ? (
+                    <button className="save-icon"></button>
+                  ) : (
+                    <button className="modifier"></button>
+                  )}
                 </button>
               </div>
               {/* modification du prix */}
@@ -667,7 +690,11 @@ export function AdminArray({ array }) {
                   <span>{modifiedArray.price}</span>
                 )}
                 <button onClick={toggleEditPrice}>
-                  {editPrice ? "Enregistrer" : "Modifier"}
+                  {editPrice ? (
+                    <button className="save-icon"></button>
+                  ) : (
+                    <button className="modifier"></button>
+                  )}
                 </button>
               </div>
               {/* modification de la Série */}
@@ -691,13 +718,19 @@ export function AdminArray({ array }) {
                   <span>{modifiedArray.serial}</span>
                 )}
                 <button onClick={toggleEditSerial}>
-                  {editSerial ? "Enregistrer" : "Modifier"}
+                  {editSerial ? (
+                    <button className="save-icon"></button>
+                  ) : (
+                    <button className="modifier"></button>
+                  )}
                 </button>
               </div>
             </div>
           </div>
         </div>
-        <button onClick={(e) => handleDelete()}>Supprimer le tableau</button>
+        <button className="delete" onClick={(e) => handleDelete()}>
+          Supprimer le tableau
+        </button>
       </form>
     </div>
   );

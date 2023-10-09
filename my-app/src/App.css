@@ -99,7 +99,7 @@ a:visited {
   color: black;
   padding-top: 1%;
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1100px) {
   .App {
     background-size: 150%;
     height: 70%;
@@ -367,7 +367,7 @@ a:visited {
   font-size: 400%;
   cursor: pointer;
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1100px) {
   .galery-page {
     background-size: 130%;
   }

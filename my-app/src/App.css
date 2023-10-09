@@ -142,6 +142,48 @@ a:visited {
     padding-top: 1%;
   }
 }
+@media screen and (min-width: 321px) and (max-width: 414px) {
+  .App {
+    background-size: 150%;
+    height: 70%;
+  }
+
+  .menu {
+    width: 80%;
+  }
+  .menu-item {
+    padding: 30px;
+    font-size: 200%;
+  }
+  hr {
+    margin-top: 50px;
+  }
+
+  .artist-main {
+    flex-direction: column;
+  }
+
+  .peintre-pic {
+    width: calc(100% - 1%);
+    padding-bottom: 10%;
+  }
+  .main-text-title {
+    font-size: 200%;
+  }
+  .main-text {
+    width: calc(100% - 5%);
+    font-size: 70%;
+  }
+
+  .last-work {
+    background-color: white;
+    position: relative;
+    font-size: 120%;
+  }
+  .last-work .main-text-title {
+    color: black;
+    padding-top: 1%;
+}
 
 /* Galerie */
 .galery-page {

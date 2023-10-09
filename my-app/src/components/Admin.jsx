@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import React from "react";
 import "../App.css";
 import "./app.jsx";
@@ -293,16 +293,19 @@ export function AdminForm() {
 
 export function AdminList() {
   const { arrays } = useCustomState();
+  const [arrayList, setArrayList] = useState([]);
   const [selectedArray, setSelectedArray] = useState(null);
   const [isModalOpen, setModalOpen] = useState(false);
-
+  useEffect(() => {
+    setArrayList(arrays);
+  }, [arrays]);
   const openModal = () => {
     setModalOpen(true);
   };
 
   const closeModal = () => {
     setModalOpen(false);
-    window.location.reload();
+    setArrayList(arrays);
   };
 
   const handleClick = (array) => {
@@ -313,7 +316,7 @@ export function AdminList() {
   return (
     <div className="admin-list">
       <div className="galery">
-        {arrays.map((array) => (
+        {arrayList.map((array) => (
           <div className="array" key={array.id}>
             <div
               className="fondu"
@@ -431,7 +434,6 @@ export function AdminArray({ array }) {
         "Content-Type": "application/json",
       },
     });
-    window.location.reload();
   };
   return (
     <div className="array-page">

@@ -99,7 +99,7 @@ a:visited {
   color: black;
   padding-top: 1%;
 }
-@media screen and (max-width: 950px) {
+@media screen and (max-width: 1024px) {
   .App {
     background-size: 150%;
     height: 70%;
@@ -369,7 +369,7 @@ a:visited {
   font-size: 400%;
   cursor: pointer;
 }
-@media screen and (max-width: 950px) {
+@media screen and (max-width: 1024px) {
   .galery-page {
     background-size: 130%;
   }
@@ -539,7 +539,7 @@ a:visited {
 .groups p {
   color: white;
 }
-@media screen and (max-width: 950px) {
+@media screen and (max-width: 1024px) {
   .artist-page {
     background-size: 140%;
   }

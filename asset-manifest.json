@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/jim-debergue/static/css/main.4dbb4db2.css",
+    "main.css": "/jim-debergue/static/css/main.f8b5d78a.css",
     "main.js": "/jim-debergue/static/js/main.5855100a.js",
     "static/js/787.28cb0dcd.chunk.js": "/jim-debergue/static/js/787.28cb0dcd.chunk.js",
     "static/media/bg-galerie.jpg": "/jim-debergue/static/media/bg-galerie.988affe40ee9bcd54a94.jpg",
@@ -12,12 +12,12 @@
     "static/media/logonoir.png": "/jim-debergue/static/media/logonoir.5c5a203f0880029f8ccd.png",
     "static/media/logo.png": "/jim-debergue/static/media/logo.fd24b8c7d6f201cabb46.png",
     "index.html": "/jim-debergue/index.html",
-    "main.4dbb4db2.css.map": "/jim-debergue/static/css/main.4dbb4db2.css.map",
+    "main.f8b5d78a.css.map": "/jim-debergue/static/css/main.f8b5d78a.css.map",
     "main.5855100a.js.map": "/jim-debergue/static/js/main.5855100a.js.map",
     "787.28cb0dcd.chunk.js.map": "/jim-debergue/static/js/787.28cb0dcd.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.4dbb4db2.css",
+    "static/css/main.f8b5d78a.css",
     "static/js/main.5855100a.js"
   ]
 }

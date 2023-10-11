@@ -1,21 +1,18 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import React from "react";
 import "../App.css";
 import "./app.jsx";
 import axios from "axios";
 import GaleryModal from "./Galerymodal";
-import { useCustomState } from "./ImportData";
 import { Link } from "react-router-dom";
 
 export function Admin() {
-  const { arrays } = useCustomState();
   return (
     <div className="admin-page">
       <div>
         <AdminMenu></AdminMenu>
         <AdminForm></AdminForm>
-
-        <AdminList arrays={arrays}></AdminList>
+        <AdminList></AdminList>
       </div>
     </div>
   );
@@ -31,7 +28,6 @@ export function AdminMenu() {
       <Link className="galery-menu-item" to="/Galery">
         Galerie
       </Link>
-
       <Link className="galery-menu-item" to="/Artiste">
         L'artiste
       </Link>
@@ -42,7 +38,7 @@ export function AdminMenu() {
   );
 }
 
-export function AdminForm({ onFormSubmit }) {
+export function AdminForm() {
   const [array, setArray] = useState({
     name: "",
     order: "",
@@ -279,7 +275,9 @@ export function AdminForm({ onFormSubmit }) {
             ></input>
             <br></br>
             <br></br>
+
             <input
+              className="array-submit"
               type="submit"
               value="Ajouter le Tableau à la galerie"
             ></input>
@@ -291,9 +289,30 @@ export function AdminForm({ onFormSubmit }) {
   );
 }
 
-export function AdminList({ arrays }) {
+export function AdminList() {
+  const [arrays, setArrays] = useState([]);
   const [selectedArray, setSelectedArray] = useState(null);
   const [isModalOpen, setModalOpen] = useState(false);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(
+        "https://server.jim-debergue.fr/api/arrays",
+        {
+          mode: "cors",
+        }
+      );
+      const data = response.data;
+      const sortedData = [...data].sort((a, b) => a.order - b.order);
+      setArrays(sortedData);
+    } catch (error) {
+      console.error("Erreur lors de la récupération des données : ", error);
+    }
+  };
 
   const openModal = () => {
     setModalOpen(true);
@@ -301,6 +320,18 @@ export function AdminList({ arrays }) {
 
   const closeModal = () => {
     setModalOpen(false);
+    fetchData();
+  };
+  const handleUpdateArray = (updatedArray) => {
+    const updatedArrays = arrays.map((array) =>
+      array.id === updatedArray.id ? updatedArray : array
+    );
+    setArrays(updatedArrays);
+  };
+  const handleDeleteArray = (deletedArrayId) => {
+    setArrays((prevArrays) =>
+      prevArrays.filter((array) => array.id !== deletedArrayId)
+    );
   };
 
   const handleClick = (array) => {
@@ -339,13 +370,18 @@ export function AdminList({ arrays }) {
         ))}
       </div>
       <GaleryModal isOpen={isModalOpen} onClose={closeModal}>
-        <AdminArray array={selectedArray}></AdminArray>
+        <AdminArray
+          array={selectedArray}
+          updateArray={handleUpdateArray}
+          deleteArray={handleDeleteArray}
+          closeModal={closeModal}
+        ></AdminArray>
       </GaleryModal>
     </div>
   );
 }
 
-export function AdminArray({ array }) {
+export function AdminArray({ array, updateArray, deleteArray, closeModal }) {
   // Set main pic state
   const [mainPic, setMainPic] = useState(array.image);
   const handleMainPic = (e) => {
@@ -412,23 +448,25 @@ export function AdminArray({ array }) {
       serial: modifiedArray.serial,
     };
 
-    axios.post("http://localhost:3030/api/modif", updatedArray, {
+    axios.post("https://server.jim-debergue.fr/api/modif", updatedArray, {
       headers: {
         "Content-Type": "application/json",
       },
     });
-    setModifiedArray(updatedArray);
+    updateArray(updatedArray);
   };
   // Function to delete arrays
   const handleDelete = (e) => {
     const deletedArray = {
       id: array.id,
     };
+    deleteArray(array.id);
     axios.post("https://server.jim-debergue.fr/api/delete", deletedArray, {
       headers: {
         "Content-Type": "application/json",
       },
     });
+    closeModal();
   };
   return (
     <div className="array-page">
@@ -728,7 +766,12 @@ export function AdminArray({ array }) {
             </div>
           </div>
         </div>
-        <button className="delete" onClick={(e) => handleDelete()}>
+        <button
+          className="delete"
+          onClick={(e) => {
+            handleDelete();
+          }}
+        >
           Supprimer le tableau
         </button>
       </form>

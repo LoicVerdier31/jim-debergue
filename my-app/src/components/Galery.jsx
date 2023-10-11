@@ -45,6 +45,7 @@ export function GaleryMenu() {
       <Link className="galery-menu-item" to="/Contact">
         Contact
       </Link>
+      <br></br>
     </div>
   );
 }

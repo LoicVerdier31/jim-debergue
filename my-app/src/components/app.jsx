@@ -21,6 +21,35 @@ export function Header() {
     </header>
   );
 }
+export function Footer() {
+  return (
+    <div className="app-footer">
+      <div className="contact-email">
+        <a href="mailto:jean.marc.debergue@gmail.com">
+          jean.marc.debergue@gmail.com
+        </a>
+      </div>
+      <div className="insta">
+        <a
+          href="https://www.instagram.com/jim.debergue/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          jim.debergue
+        </a>
+      </div>
+      <div className="facebook">
+        <a
+          href="https://www.facebook.com/JMDart31/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          jim.debergue
+        </a>
+      </div>
+    </div>
+  );
+}
 
 export function Menu() {
   const [ipAddress, setIpAddress] = useState("");
@@ -185,6 +214,7 @@ export function App() {
 
       <ArtistMain></ArtistMain>
       <LastArrays></LastArrays>
+      <Footer></Footer>
     </div>
   );
 }

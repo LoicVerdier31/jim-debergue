@@ -760,16 +760,6 @@ a:visited {
 .admin-list {
   background-color: white;
 }
-.reload {
-  background-position: bottom;
-  background-size: 90%;
-  background-repeat: no-repeat;
-  height: 100px;
-  width: 100px;
-  background-image: url("./static/button-synchronize.png");
-  position: fixed;
-  bottom: 5%;
-}
 
 .admin-list .galery {
   display: flex;

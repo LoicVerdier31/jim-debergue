@@ -1,11 +1,10 @@
 {
   "files": {
-    "main.css": "/jim-debergue/static/css/main.baf4d213.css",
-    "main.js": "/jim-debergue/static/js/main.3f927435.js",
+    "main.css": "/jim-debergue/static/css/main.cd8fe4cb.css",
+    "main.js": "/jim-debergue/static/js/main.d9a251c7.js",
     "static/js/787.28cb0dcd.chunk.js": "/jim-debergue/static/js/787.28cb0dcd.chunk.js",
-    "static/media/bg-galerie.jpg": "/jim-debergue/static/media/bg-galerie.988affe40ee9bcd54a94.jpg",
     "static/media/peintre-accueil.JPG": "/jim-debergue/static/media/peintre-accueil.625593a090835147120b.JPG",
-    "static/media/picbg-metal.JPG": "/jim-debergue/static/media/picbg-metal.9e87e259e2bda1738f62.JPG",
+    "static/media/bg-galerie.webp": "/jim-debergue/static/media/bg-galerie.74ab650ec0b807f08d26.webp",
     "static/media/instagram-icon.png": "/jim-debergue/static/media/instagram-icon.db2612bd586501d9ed3e.png",
     "static/media/bg-artiste.webp": "/jim-debergue/static/media/bg-artiste.2fe958be0524a771cf6c.webp",
     "static/media/artist-group.webp": "/jim-debergue/static/media/artist-group.70fed36ba08cf2edf0dd.webp",
@@ -17,12 +16,12 @@
     "static/media/logonoir.png": "/jim-debergue/static/media/logonoir.5c5a203f0880029f8ccd.png",
     "static/media/logo.png": "/jim-debergue/static/media/logo.fd24b8c7d6f201cabb46.png",
     "index.html": "/jim-debergue/index.html",
-    "main.baf4d213.css.map": "/jim-debergue/static/css/main.baf4d213.css.map",
-    "main.3f927435.js.map": "/jim-debergue/static/js/main.3f927435.js.map",
+    "main.cd8fe4cb.css.map": "/jim-debergue/static/css/main.cd8fe4cb.css.map",
+    "main.d9a251c7.js.map": "/jim-debergue/static/js/main.d9a251c7.js.map",
     "787.28cb0dcd.chunk.js.map": "/jim-debergue/static/js/787.28cb0dcd.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.baf4d213.css",
-    "static/js/main.3f927435.js"
+    "static/css/main.cd8fe4cb.css",
+    "static/js/main.d9a251c7.js"
   ]
 }

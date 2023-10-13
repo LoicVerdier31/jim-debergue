@@ -88,11 +88,13 @@ export function GalerieContain() {
                 className="galerie-images-bas"
                 src={`data:image/webp;base64,${array.image2}`}
                 alt={array.name}
+                loading="lazy"
               ></img>
               <img
                 className="galerie-images-haut"
                 src={`data:image/webp;base64,${array.image}`}
                 alt={array.name}
+                loading="lazy"
               ></img>
             </div>
 
@@ -169,14 +171,14 @@ export function ArrayDetails({ array }) {
 
           <img
             src={`data:image/webp;base64,${array.image3}`}
-            value={array.base64Data3}
+            value={array.image3}
             onClick={(e) => handleMainPic(e)}
             alt={array.name}
           ></img>
 
           <img
             src={`data:image/webp;base64,${array.image4}`}
-            value={array.base64Data4}
+            value={array.image4}
             onClick={(e) => handleMainPic(e)}
             alt={array.name}
           ></img>

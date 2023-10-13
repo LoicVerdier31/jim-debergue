@@ -353,11 +353,13 @@ export function AdminList() {
                 className="galerie-images-bas"
                 src={`data:image/webp;base64,${array.image2}`}
                 alt={array.name}
+                loading="lazy"
               ></img>
               <img
                 className="galerie-images-haut"
                 src={`data:image/webp;base64,${array.image}`}
                 alt={array.name}
+                loading="lazy"
               ></img>
             </div>
 

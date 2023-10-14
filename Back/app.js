@@ -2,7 +2,7 @@ const feathers = require("@feathersjs/feathers");
 const express = require("@feathersjs/express");
 const knex = require("knex");
 const knexService = require("feathers-knex");
-const memoryService = require("feathers-memory");
+const sharp = require("sharp");
 
 //Cors
 const cors = require("cors");
@@ -22,7 +22,6 @@ const corsOptions = {
   optionsSuccessStatus: 204,
 };
 app.use(cors(corsOptions));
-// app.use("arrays", memoryService());
 
 // Enable HTTP transport
 app.configure(express.rest());
@@ -74,6 +73,13 @@ app.post("/api/formdata", upload, async (request, response) => {
           ""
         )
       );
+      const compressedImageBuffer = await sharp(temporaryFiles.image[0].buffer)
+        .resize(300, 300)
+        .jpeg({ quality: 80 })
+        .toBuffer();
+
+      // Convertissez l'image redimensionnée en base64
+      formFiles.imagecompressed = compressedImageBuffer.toString("base64");
     } else {
       formFiles.image641 = null;
     }
@@ -85,6 +91,13 @@ app.post("/api/formdata", upload, async (request, response) => {
           ""
         )
       );
+      const compressedImageBuffer = await sharp(temporaryFiles.image2[0].buffer)
+        .resize(300, 300)
+        .jpeg({ quality: 80 })
+        .toBuffer();
+
+      // Convertissez l'image redimensionnée en base64
+      formFiles.image2compressed = compressedImageBuffer.toString("base64");
     } else {
       formFiles.image642 = null;
     }
@@ -126,6 +139,8 @@ app.post("/api/formdata", upload, async (request, response) => {
       serial: formData.serial,
       year: formData.year,
       price: formData.price,
+      imagecompressed: formFiles.imagecompressed,
+      image2compressed: formFiles.image2compressed,
     };
 
     const createdArray = await arraysService.create(arrayData);

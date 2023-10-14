@@ -1,11 +1,11 @@
 import React from "react";
 import "../App.css";
 import "./app.jsx";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import GaleryModal from "./Galerymodal";
 import MainpicModal from "./MainpicModal";
 import { Link } from "react-router-dom";
-import { useCustomState } from "./ImportData";
+import axios from "axios";
 
 export function Galery() {
   return (
@@ -51,23 +51,94 @@ export function GaleryMenu() {
 }
 
 export function GalerieContain() {
-  const { arrays } = useCustomState();
-  const [selectedArray, setSelectedArray] = useState(null);
+  const [selectedArray, setSelectedArray] = useState([]);
+  const [arrays, setArrays] = useState([]);
+  const [mainPic, setMainPic] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "https://server.jim-debergue.fr/api/arrays",
+          {
+            params: {
+              $sort: {
+                order: 1,
+              },
+
+              $select: [
+                "id",
+                "name",
+                "dimension",
+                "imagecompressed",
+                "image2compressed",
+              ],
+            },
+            mode: "cors",
+          }
+        );
+        const data = response.data;
+        setArrays(data);
+      } catch (error) {
+        console.error("Erreur lors de la récupération des données : ", error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   // Opening modal for Array-details
+
   const [isModalOpen, setModalOpen] = useState(false);
 
-  const openModal = () => {
+  const openModal = (arrayId) => {
+    fetchSelectedArray(arrayId);
     setModalOpen(true);
   };
+
   const closeModal = () => {
+    setSelectedArray([]);
+    setMainPic("");
     setModalOpen(false);
   };
 
-  // Use fetchArrays function
+  // Set selected array for details
 
+  const fetchSelectedArray = async (arrayId) => {
+    try {
+      const response = await axios.get(
+        `https://server.jim-debergue.fr/api/arrays/${arrayId}`,
+        {
+          params: {
+            $select: [
+              "id",
+              "name",
+              "description",
+              "dimension",
+              "year",
+              "image",
+              "image2",
+              "image3",
+              "image4",
+            ],
+          },
+          mode: "cors",
+        }
+      );
+      const arrayData = response.data;
+      setSelectedArray(arrayData);
+      setMainPic(arrayData.image);
+    } catch (error) {
+      console.error(
+        "Erreur lors de la récupération des données du tableau sélectionné : ",
+        error
+      );
+    }
+  };
+
+  // Select array function
   const handleClick = (array) => {
-    setSelectedArray(array);
+    fetchSelectedArray(array.id);
+    openModal();
   };
 
   return (
@@ -86,15 +157,13 @@ export function GalerieContain() {
             >
               <img
                 className="galerie-images-bas"
-                src={`data:image/webp;base64,${array.image2}`}
+                src={`data:image/webp;base64,${array.image2compressed}`}
                 alt={array.name}
-                loading="lazy"
               ></img>
               <img
                 className="galerie-images-haut"
-                src={`data:image/webp;base64,${array.image}`}
+                src={`data:image/webp;base64,${array.imagecompressed}`}
                 alt={array.name}
-                loading="lazy"
               ></img>
             </div>
 
@@ -106,16 +175,19 @@ export function GalerieContain() {
           </div>
         ))}
       </div>
-      <GaleryModal isOpen={isModalOpen} onClose={closeModal}>
-        <ArrayDetails array={selectedArray}></ArrayDetails>
-      </GaleryModal>
+      {isModalOpen && selectedArray.id && (
+        <GaleryModal isOpen={isModalOpen} onClose={closeModal}>
+          <ArrayDetails array={selectedArray} mainPic={mainPic}></ArrayDetails>
+        </GaleryModal>
+      )}
     </div>
   );
 }
 
-export function ArrayDetails({ array }) {
+export function ArrayDetails({ array, mainPic }) {
   // Opening fullscreen array main pic
   const [isModalOpen, setModalOpen] = useState(false);
+
   const openModal = () => {
     setModalOpen(true);
   };
@@ -124,10 +196,13 @@ export function ArrayDetails({ array }) {
   };
 
   // Set main pic state
-  const [mainPic, setMainPic] = useState(array.image);
+  const [mainPic1, setMainPic1] = useState(mainPic);
+  useEffect(() => {
+    setMainPic1(mainPic);
+  }, [mainPic]);
   const handleMainPic = (e) => {
     const newMainPic = e.target.getAttribute("value");
-    setMainPic(newMainPic);
+    setMainPic1(newMainPic);
   };
   return (
     <div className="array-page">
@@ -139,7 +214,7 @@ export function ArrayDetails({ array }) {
             openModal();
           }}
           className="array-main-pic"
-          src={`data:image/webp;base64,${mainPic}`}
+          src={`data:image/webp;base64,${mainPic1}`}
           alt={array.name}
         ></img>
         <div className="array-info">
@@ -185,7 +260,7 @@ export function ArrayDetails({ array }) {
         </div>
       </div>
       <MainpicModal
-        mainPic={mainPic}
+        mainPic={mainPic1}
         isOpen={isModalOpen}
         onClose={closeModal}
       ></MainpicModal>

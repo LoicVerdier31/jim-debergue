@@ -13,6 +13,8 @@ exports.up = function (knex) {
     table.text("image2");
     table.text("image3");
     table.text("image4");
+    table.text("imagecompressed");
+    table.text("image2compressed");
     table.string("type");
     table.string("type2");
     table.string("serial");

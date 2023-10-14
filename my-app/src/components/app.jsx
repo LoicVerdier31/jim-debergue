@@ -4,9 +4,8 @@ import "../index";
 import { ArrayDetails as LastArraysDetails } from "./Galery";
 import GaleryModal from "./Galerymodal";
 import { Link } from "react-router-dom";
-import { useCustomState } from "./ImportData";
 import axios from "axios";
-import { allowedIpAdress } from "../AllowedIp";
+import { allowedIpAdress } from "./AllowedIp";
 
 //images
 import peintre from "../static/peintre-accueil.JPG";
@@ -107,63 +106,118 @@ export function Menu() {
 
 export function ArtistMain() {
   return (
-    <body>
-      <div className="artist-main">
-        <div className="main-text">
-          <div>
-            <p className="main-text-title">Le peintre</p>
-            <p>
-              Jim Debergue, de son vrai nom Jean-Marc Debergue, est un artiste
-              toulousain.
-            </p>
-          </div>
-          <div>
-            <p className="main-text-title">Son art</p>
-            <p>
-              Il crée ses œuvres à base de couches successives de peintures, de
-              pigments, de liants et d’inclusions et développe ainsi la
-              transparence et les volumes.
-            </p>
-          </div>
+    <div className="artist-main">
+      <div className="main-text">
+        <div>
+          <p className="main-text-title">Le peintre</p>
+          <p>
+            Jim Debergue, de son vrai nom Jean-Marc Debergue, est un artiste
+            toulousain.
+          </p>
         </div>
-        <img className="peintre-pic" src={peintre} alt="peintre"></img>
+        <div>
+          <p className="main-text-title">Son art</p>
+          <p>
+            Il crée ses œuvres à base de couches successives de peintures, de
+            pigments, de liants et d’inclusions et développe ainsi la
+            transparence et les volumes.
+          </p>
+        </div>
       </div>
-    </body>
+      <img className="peintre-pic" src={peintre} alt="peintre"></img>
+    </div>
   );
 }
 
 export function LastArrays() {
-  const { arrays } = useCustomState();
-  const [selectedArray, setSelectedArray] = useState(null);
-  const [lastArrays, setLastArrays] = useState(arrays);
+  const [selectedArray, setSelectedArray] = useState([]);
+  const [lastArrays, setLastArrays] = useState([]);
+  const [mainPic, setMainPic] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "https://server.jim-debergue.fr/api/arrays",
+          {
+            params: {
+              $sort: {
+                created_at: -1,
+              },
+              $limit: 3,
+              $select: [
+                "id",
+                "name",
+                "dimension",
+                "imagecompressed",
+                "image2compressed",
+              ],
+            },
+            mode: "cors",
+          }
+        );
+        const data = response.data;
+        setLastArrays(data);
+      } catch (error) {
+        console.error("Erreur lors de la récupération des données : ", error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   // Opening modal for Array-details
 
   const [isModalOpen, setModalOpen] = useState(false);
 
   const openModal = () => {
+    fetchSelectedArray();
     setModalOpen(true);
   };
 
   const closeModal = () => {
+    setSelectedArray([]);
+    setMainPic("");
     setModalOpen(false);
   };
 
   // Set selected array for details
 
-  const handleClick = (array) => {
-    setSelectedArray(array);
+  const fetchSelectedArray = async (arrayId) => {
+    try {
+      const response = await axios.get(
+        `https://server.jim-debergue.fr/api/arrays/${arrayId}`,
+        {
+          params: {
+            $select: [
+              "id",
+              "name",
+              "description",
+              "dimension",
+              "year",
+              "image",
+              "image2",
+              "image3",
+              "image4",
+            ],
+          },
+          mode: "cors",
+        }
+      );
+      const arrayData = response.data;
+      setSelectedArray(arrayData);
+      setMainPic(arrayData.image);
+    } catch (error) {
+      console.error(
+        "Erreur lors de la récupération des données du tableau sélectionné : ",
+        error
+      );
+    }
   };
-  // Set last arrays
-  useEffect(() => {
-    const sortedData = [...arrays].sort((a, b) => {
-      const dateA = new Date(a.created_at);
-      const dateB = new Date(b.created_at);
-      return dateA - dateB;
-    });
-    const lastCreatedAt = sortedData.slice(-3);
-    setLastArrays(lastCreatedAt);
-  }, [arrays]);
+
+  // Select array function
+  const handleClick = (array) => {
+    fetchSelectedArray(array.id);
+  };
 
   return (
     <div className="last-work">
@@ -182,12 +236,12 @@ export function LastArrays() {
             >
               <img
                 className="galerie-images-bas"
-                src={`data:image/webp;base64,${array.image2}`}
+                src={`data:image/webp;base64,${array.image2compressed}`}
                 alt={array.name}
               ></img>
               <img
                 className="galerie-images-haut"
-                src={`data:image/webp;base64,${array.image}`}
+                src={`data:image/webp;base64,${array.imagecompressed}`}
                 alt={array.name}
               ></img>
             </div>
@@ -200,9 +254,14 @@ export function LastArrays() {
           </div>
         ))}
       </div>
-      <GaleryModal isOpen={isModalOpen} onClose={closeModal}>
-        <LastArraysDetails array={selectedArray}></LastArraysDetails>
-      </GaleryModal>
+      {isModalOpen && selectedArray.id && (
+        <GaleryModal isOpen={isModalOpen} onClose={closeModal}>
+          <LastArraysDetails
+            array={selectedArray}
+            mainPic={mainPic}
+          ></LastArraysDetails>
+        </GaleryModal>
+      )}
     </div>
   );
 }

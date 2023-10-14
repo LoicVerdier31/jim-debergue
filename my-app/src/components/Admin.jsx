@@ -291,8 +291,9 @@ export function AdminForm() {
 
 export function AdminList() {
   const [arrays, setArrays] = useState([]);
-  const [selectedArray, setSelectedArray] = useState(null);
+  const [selectedArray, setSelectedArray] = useState([]);
   const [isModalOpen, setModalOpen] = useState(false);
+  const [mainPic, setMainPic] = useState([]);
 
   useEffect(() => {
     fetchData();
@@ -303,39 +304,79 @@ export function AdminList() {
       const response = await axios.get(
         "https://server.jim-debergue.fr/api/arrays",
         {
+          params: {
+            $sort: {
+              order: 1,
+            },
+
+            $select: [
+              "id",
+              "name",
+              "order",
+              "imagecompressed",
+              "image2compressed",
+            ],
+          },
           mode: "cors",
         }
       );
       const data = response.data;
-      const sortedData = [...data].sort((a, b) => a.order - b.order);
-      setArrays(sortedData);
+      setArrays(data);
     } catch (error) {
       console.error("Erreur lors de la récupération des données : ", error);
     }
   };
 
-  const openModal = () => {
+  const openModal = (arrayId) => {
+    fetchSelectedArray(arrayId);
     setModalOpen(true);
   };
 
   const closeModal = () => {
-    setModalOpen(false);
+    setSelectedArray([]);
+    setMainPic("");
     fetchData();
-  };
-  const handleUpdateArray = (updatedArray) => {
-    const updatedArrays = arrays.map((array) =>
-      array.id === updatedArray.id ? updatedArray : array
-    );
-    setArrays(updatedArrays);
-  };
-  const handleDeleteArray = (deletedArrayId) => {
-    setArrays((prevArrays) =>
-      prevArrays.filter((array) => array.id !== deletedArrayId)
-    );
+    setModalOpen(false);
   };
 
+  const fetchSelectedArray = async (arrayId) => {
+    try {
+      const response = await axios.get(
+        `https://server.jim-debergue.fr/api/arrays/${arrayId}`,
+        {
+          params: {
+            $select: [
+              "id",
+              "name",
+              "order",
+              "description",
+              "dimension",
+              "year",
+              "image",
+              "image2",
+              "image3",
+              "image4",
+              "type",
+              "type2",
+              "price",
+              "serial",
+            ],
+          },
+          mode: "cors",
+        }
+      );
+      const arrayData = response.data;
+      setSelectedArray(arrayData);
+      setMainPic(arrayData.image);
+    } catch (error) {
+      console.error(
+        "Erreur lors de la récupération des données du tableau sélectionné : ",
+        error
+      );
+    }
+  };
   const handleClick = (array) => {
-    setSelectedArray(array);
+    fetchSelectedArray(array.id);
     openModal();
   };
 
@@ -351,15 +392,13 @@ export function AdminList() {
             >
               <img
                 className="galerie-images-bas"
-                src={`data:image/webp;base64,${array.image2}`}
+                src={`data:image/webp;base64,${array.image2compressed}`}
                 alt={array.name}
-                loading="lazy"
               ></img>
               <img
                 className="galerie-images-haut"
-                src={`data:image/webp;base64,${array.image}`}
+                src={`data:image/webp;base64,${array.imagecompressed}`}
                 alt={array.name}
-                loading="lazy"
               ></img>
             </div>
 
@@ -371,19 +410,21 @@ export function AdminList() {
           </div>
         ))}
       </div>
-      <GaleryModal isOpen={isModalOpen} onClose={closeModal}>
-        <AdminArray
-          array={selectedArray}
-          updateArray={handleUpdateArray}
-          deleteArray={handleDeleteArray}
-          closeModal={closeModal}
-        ></AdminArray>
-      </GaleryModal>
+      {isModalOpen && selectedArray.id && (
+        <GaleryModal isOpen={isModalOpen} onClose={closeModal}>
+          <AdminArray
+            array={selectedArray}
+            closeModal={closeModal}
+            fetchData={fetchData}
+            mainPic={mainPic}
+          ></AdminArray>
+        </GaleryModal>
+      )}
     </div>
   );
 }
 
-export function AdminArray({ array, updateArray, deleteArray, closeModal }) {
+export function AdminArray({ array, closeModal, fetchData }) {
   // Set main pic state
   const [mainPic, setMainPic] = useState(array.image);
   const handleMainPic = (e) => {
@@ -450,20 +491,18 @@ export function AdminArray({ array, updateArray, deleteArray, closeModal }) {
       serial: modifiedArray.serial,
     };
 
-    axios.post("https://server.jim-debergue.fr/api/modif", updatedArray, {
+    axios.post("http://localhost:3030/api/modif", updatedArray, {
       headers: {
         "Content-Type": "application/json",
       },
     });
-    updateArray(updatedArray);
   };
   // Function to delete arrays
   const handleDelete = (e) => {
     const deletedArray = {
       id: array.id,
     };
-    deleteArray(array.id);
-    axios.post("https://server.jim-debergue.fr/api/delete", deletedArray, {
+    axios.post("http://localhost:3030/api/delete", deletedArray, {
       headers: {
         "Content-Type": "application/json",
       },

@@ -74,8 +74,8 @@ app.post("/api/formdata", upload, async (request, response) => {
         )
       );
       const compressedImageBuffer = await sharp(temporaryFiles.image[0].buffer)
-        .resize(300, 300)
-        .jpeg({ quality: 80 })
+        .resize(400, 400)
+        .jpeg({ quality: 90 })
         .toBuffer();
 
       // Convertissez l'image redimensionnée en base64
@@ -92,8 +92,8 @@ app.post("/api/formdata", upload, async (request, response) => {
         )
       );
       const compressedImageBuffer = await sharp(temporaryFiles.image2[0].buffer)
-        .resize(300, 300)
-        .jpeg({ quality: 80 })
+        .resize(400, 400)
+        .jpeg({ quality: 90 })
         .toBuffer();
 
       // Convertissez l'image redimensionnée en base64

@@ -57,25 +57,22 @@ export function GalerieContain() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          "https://server.jim-debergue.fr/api/arrays",
-          {
-            params: {
-              $sort: {
-                order: 1,
-              },
-
-              $select: [
-                "id",
-                "name",
-                "dimension",
-                "imagecompressed",
-                "image2compressed",
-              ],
+        const response = await axios.get("http://localhost:3030/api/arrays", {
+          params: {
+            $sort: {
+              order: -1,
             },
-            mode: "cors",
-          }
-        );
+
+            $select: [
+              "id",
+              "name",
+              "dimension",
+              "imagecompressed",
+              "image2compressed",
+            ],
+          },
+          mode: "cors",
+        });
         const data = response.data;
         setArrays(data);
       } catch (error) {
@@ -166,8 +163,7 @@ export function GalerieContain() {
                 alt={array.name}
               ></img>
             </div>
-
-            <div>
+            <div className="g-array-text">
               <p className="g-array-title">{array.name}</p>
               <p className="g-array-dimension">{array.dimension}</p>
               <hr></hr>

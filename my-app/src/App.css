@@ -216,6 +216,7 @@ a:visited {
   font-size: 300%;
   font-weight: 100;
   margin-top: -7%;
+  margin-bottom: 5%;
 }
 
 .galery {
@@ -225,33 +226,41 @@ a:visited {
   flex-wrap: wrap;
   background-color: white;
   justify-content: space-between;
-  padding: 15%;
+  padding-left: 10%;
+  padding-right: 10%;
   z-index: 1;
   background-color: white;
-  padding-top: 30%;
-  margin-top: -7%;
+  margin-top: -5%;
+  padding-bottom: 30%;
 }
 
 .array {
-  width: calc(33.33% - 1%);
+  width: calc(33.33% - 2%);
   height: 20em;
-  box-sizing: border-box;
   background-color: white;
   text-align: center;
   float: left;
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: row;
   align-items: center;
-  padding-bottom: 54%;
-  padding-top: 40px;
+  flex-wrap: wrap;
+  margin-top: 15%;
+  justify-content: center;
+  padding-bottom: 15%;
 }
 
 .array div {
   width: 100%;
-  height: auto;
+}
+.g-array-text {
+  width: 100%;
+  padding-top: 100%;
+}
+.g-array-text p {
+  margin: 0;
 }
 .g-array-title {
-  font-size: 150%;
+  font-size: 120%;
   font-weight: 250;
 }
 .g-array-dimension {
@@ -260,7 +269,6 @@ a:visited {
 }
 .fondu {
   position: relative;
-  height: 50%;
   cursor: pointer;
 }
 .galerie-images-haut,
@@ -268,7 +276,7 @@ a:visited {
   position: absolute;
   height: auto;
   left: 0;
-  max-width: 100%;
+  width: 100%;
 }
 .fondu img {
   transition: opacity 200ms linear;
@@ -395,9 +403,6 @@ a:visited {
   .galery-menu {
     width: 80%;
   }
-  .galery {
-    margin-top: -15%;
-  }
   .galery-menu-item {
     padding: 30px;
   }
@@ -410,9 +415,15 @@ a:visited {
   }
 
   .array {
-    width: calc(100% - 1%);
+    width: calc(100% - 15%);
     margin-bottom: 70%;
-    font-size: 120%;
+    font-size: 100%;
+    margin-left: 9%;
+    margin-right: 7%;
+    
+  }
+  .array img {
+    width: 100%;
   }
 
   .array div {
@@ -420,11 +431,11 @@ a:visited {
     height: auto;
   }
   .g-array-title {
-    font-size: 190%;
-    font-weight: 250;
+    font-size: 150%;
+    font-weight: 200;
   }
   .g-array-dimension {
-    font-size: 120%;
+    font-size: 80%;
     font-weight: 100;
   }
 

@@ -74,7 +74,7 @@ export function AdminForm() {
     }
 
     axios
-      .post("https://server.jim-debergue.fr/api/formdata", formData, {
+      .post("http://localhost:3030/api/formdata", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -306,7 +306,7 @@ export function AdminList() {
         {
           params: {
             $sort: {
-              order: 1,
+              order: -1,
             },
 
             $select: [
@@ -491,7 +491,7 @@ export function AdminArray({ array, closeModal, fetchData }) {
       serial: modifiedArray.serial,
     };
 
-    axios.post("http://localhost:3030/api/modif", updatedArray, {
+    axios.post("https://server.jim-debergue.fr/api/modif", updatedArray, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -502,7 +502,7 @@ export function AdminArray({ array, closeModal, fetchData }) {
     const deletedArray = {
       id: array.id,
     };
-    axios.post("http://localhost:3030/api/delete", deletedArray, {
+    axios.post("https://server.jim-debergue.fr/api/delete", deletedArray, {
       headers: {
         "Content-Type": "application/json",
       },

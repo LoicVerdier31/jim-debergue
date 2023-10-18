@@ -24,19 +24,15 @@ const MainpicModal = ({ isOpen, onClose, mainPic }) => {
   };
 
   return (
-    <div style={modalStyle} className="mainpicmodal">
-      <button className="mainpic-close-button" onClick={onClose}>
-        &times;
-      </button>
-
+    <div style={modalStyle} onClick={onClose} className="mainpicmodal">
       <div className="modal-main-pic">
         <img
-          conClick={onClose}
+          onClick={onClose}
           className="zoom-pic"
           src={`data:image/webp;base64,${mainPic}`}
           alt=" en plein écran"
           style={imageStyle}
-        />
+        ></img>
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 import React from "react";
 import "../App.css";
 import "./app.jsx";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import GaleryModal from "./Galerymodal";
 import MainpicModal from "./MainpicModal";
 import { Link } from "react-router-dom";
@@ -54,34 +54,56 @@ export function GalerieContain() {
   const [selectedArray, setSelectedArray] = useState([]);
   const [arrays, setArrays] = useState([]);
   const [mainPic, setMainPic] = useState([]);
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get("http://localhost:3030/api/arrays", {
-          params: {
-            $sort: {
-              order: -1,
-            },
+  const [loading, setLoading] = useState(false);
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(true);
 
-            $select: [
-              "id",
-              "name",
-              "dimension",
-              "imagecompressed",
-              "image2compressed",
-            ],
-          },
-          mode: "cors",
-        });
+  const fetchData = useCallback(
+    async (pageNum) => {
+      if (loading || !hasMore) return;
+
+      setLoading(true);
+      try {
+        const response = await axios.get(
+          "https://server.jim-debergue.fr/api/arrays",
+          {
+            params: {
+              $sort: {
+                order: -1,
+              },
+              $limit: 10,
+              $skip: (pageNum - 1) * 10,
+              $select: [
+                "id",
+                "name",
+                "dimension",
+                "imagecompressed",
+                "image2compressed",
+              ],
+            },
+            mode: "cors",
+          }
+        );
         const data = response.data;
-        setArrays(data);
+
+        if (data.length === 0) {
+          setHasMore(false);
+        } else {
+          setArrays((prevArrays) => [...prevArrays, ...data]);
+          setPage(pageNum + 1);
+        }
       } catch (error) {
         console.error("Erreur lors de la récupération des données : ", error);
+      } finally {
+        setLoading(false);
       }
-    };
+    },
+    [loading, hasMore]
+  );
 
-    fetchData();
-  }, []);
+  useEffect(() => {
+    fetchData(page);
+  }, [fetchData, page]);
 
   // Opening modal for Array-details
 
@@ -203,7 +225,6 @@ export function ArrayDetails({ array, mainPic }) {
   return (
     <div className="array-page">
       <p className="array-title">{array.name}</p>
-
       <div className="array-pic">
         <img
           onClick={() => {
@@ -216,13 +237,11 @@ export function ArrayDetails({ array, mainPic }) {
         <div className="array-info">
           <div className="array-description">
             <p>Année :</p>
-            <p>Description :</p> <br></br> {array.description}
+            <p>Description :</p> {array.description}
           </div>
-          <br></br>
           <br></br>
           <div className="array-dimension">
             <p>Dimensions :</p>
-            <br></br>
             {array.dimension}
           </div>
           <hr></hr>

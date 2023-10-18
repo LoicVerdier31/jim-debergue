@@ -246,7 +246,7 @@ export function LastArrays() {
               ></img>
             </div>
 
-            <div>
+            <div className="g-array-text" >
               <p className="g-array-title">{array.name}</p>
               <p className="g-array-dimension">{array.dimension}</p>
               <hr></hr>

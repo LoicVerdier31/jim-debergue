@@ -292,7 +292,7 @@ a:visited {
   flex-wrap: wrap;
   background-color: white;
   justify-content: space-between;
-  margin: 5%;
+  margin: 3%;
   z-index: 2;
 }
 
@@ -371,7 +371,7 @@ a:visited {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.887);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -379,21 +379,22 @@ a:visited {
 
 .modal {
   background: white;
-  padding: 10px;
   position: relative;
-  max-height: 90%;
-  border-radius: 5px;
+  max-height: 80%;
+  border-radius: 50px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   overflow: scroll;
+  padding: 3%;
 }
 
 .close-button {
-  position: absolute;
-  top: 5%;
+  position: fixed;
+  top: 10%;
   right: 5%;
   background: none;
   border: none;
-  font-size: 400%;
+  font-size: 500%;
+  z-index: 5;
   cursor: pointer;
 }
 @media screen and (orientation: portrait) {
@@ -420,7 +421,6 @@ a:visited {
     font-size: 100%;
     margin-left: 9%;
     margin-right: 7%;
-    
   }
   .array img {
     width: 100%;
@@ -448,10 +448,11 @@ a:visited {
   }
 
   .array-main-pic {
-    margin-top: 30%;
+    margin-top: 5%;
     flex-basis: calc(100% - 5%);
     max-width: 100%;
     box-shadow: 3px 3px rgb(182, 182, 68), -1em -0.2em 0.9em rgb(106, 106, 61);
+    margin-bottom: 0%;
   }
 
   ::-webkit-scrollbar {
@@ -604,7 +605,7 @@ a:visited {
     flex-direction: column-reverse;
   }
   .inspiration img {
-    width: calc(80% - 5%);
+    width: calc(100% - 5%);
   }
 
   .inspiration p {
@@ -612,11 +613,14 @@ a:visited {
   }
 
   .technical img {
-    width: calc(40% - 5%);
+    width: calc(100% - 5%);
   }
 
   .groups {
     flex-direction: column-reverse;
+  }
+  .groups img {
+    width: calc(100% - 5%);
   }
 }
 /* Contact */
@@ -626,7 +630,7 @@ a:visited {
   height: 60%;
   width: 100%;
   background-size: 50%;
-  background-color: rgb(235, 226, 174);
+  background-color: rgb(182, 179, 161);
   background-attachment: fixed;
   padding: 0p;
   margin: 0;
@@ -700,7 +704,7 @@ a:visited {
   color: blue;
   font-weight: 500;
 }
-@media screen and (max-width: 1300px) {
+@media screen and (orientation: portrait) {
   .contact-title {
     margin-top: 30%;
   }

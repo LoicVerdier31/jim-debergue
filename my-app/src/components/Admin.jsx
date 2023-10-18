@@ -74,7 +74,7 @@ export function AdminForm() {
     }
 
     axios
-      .post("http://localhost:3030/api/formdata", formData, {
+      .post("https://server.jim-debergue.fr/api/formdata", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

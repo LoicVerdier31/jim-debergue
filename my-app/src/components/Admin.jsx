@@ -74,7 +74,7 @@ export function AdminForm() {
     }
 
     axios
-      .post("https://server.jim-debergue.fr/api/formdata", formData, {
+      .post("https://back.jim-debergue.fr/api/formdata", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -302,7 +302,7 @@ export function AdminList() {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        "https://server.jim-debergue.fr/api/arrays",
+        "https://back.jim-debergue.fr/api/arrays",
         {
           params: {
             $sort: {
@@ -342,7 +342,7 @@ export function AdminList() {
   const fetchSelectedArray = async (arrayId) => {
     try {
       const response = await axios.get(
-        `https://server.jim-debergue.fr/api/arrays/${arrayId}`,
+        `https://back.jim-debergue.fr/api/arrays/${arrayId}`,
         {
           params: {
             $select: [
@@ -491,7 +491,7 @@ export function AdminArray({ array, closeModal, fetchData }) {
       serial: modifiedArray.serial,
     };
 
-    axios.post("https://server.jim-debergue.fr/api/modif", updatedArray, {
+    axios.post("https://back.jim-debergue.fr/api/modif", updatedArray, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -502,7 +502,7 @@ export function AdminArray({ array, closeModal, fetchData }) {
     const deletedArray = {
       id: array.id,
     };
-    axios.post("https://server.jim-debergue.fr/api/delete", deletedArray, {
+    axios.post("https://back.jim-debergue.fr/api/delete", deletedArray, {
       headers: {
         "Content-Type": "application/json",
       },

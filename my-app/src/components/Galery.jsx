@@ -65,7 +65,7 @@ export function GalerieContain() {
       setLoading(true);
       try {
         const response = await axios.get(
-          "https://server.jim-debergue.fr/api/arrays",
+          "https://back.jim-debergue.fr/api/arrays",
           {
             params: {
               $sort: {
@@ -125,7 +125,7 @@ export function GalerieContain() {
   const fetchSelectedArray = async (arrayId) => {
     try {
       const response = await axios.get(
-        `https://server.jim-debergue.fr/api/arrays/${arrayId}`,
+        `https://back.jim-debergue.fr/api/arrays/${arrayId}`,
         {
           params: {
             $select: [

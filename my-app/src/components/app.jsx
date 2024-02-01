@@ -137,7 +137,7 @@ export function LastArrays() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://server.jim-debergue.fr/api/arrays",
+          "https://back.jim-debergue.fr/api/arrays",
           {
             params: {
               $sort: {
@@ -185,7 +185,7 @@ export function LastArrays() {
   const fetchSelectedArray = async (arrayId) => {
     try {
       const response = await axios.get(
-        `https://server.jim-debergue.fr/api/arrays/${arrayId}`,
+        `https://back.jim-debergue.fr/api/arrays/${arrayId}`,
         {
           params: {
             $select: [
@@ -246,7 +246,7 @@ export function LastArrays() {
               ></img>
             </div>
 
-            <div className="g-array-text" >
+            <div className="g-array-text">
               <p className="g-array-title">{array.name}</p>
               <p className="g-array-dimension">{array.dimension}</p>
               <hr></hr>

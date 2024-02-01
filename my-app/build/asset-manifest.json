@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/jim-debergue/static/css/main.a3eaa9d4.css",
-    "main.js": "/jim-debergue/static/js/main.8ca958f4.js",
-    "static/js/787.28cb0dcd.chunk.js": "/jim-debergue/static/js/787.28cb0dcd.chunk.js",
+    "main.css": "/jim-debergue/static/css/main.d1c02317.css",
+    "main.js": "/jim-debergue/static/js/main.016e21b5.js",
+    "static/js/787.d4aba7ab.chunk.js": "/jim-debergue/static/js/787.d4aba7ab.chunk.js",
     "static/media/peintre-accueil.JPG": "/jim-debergue/static/media/peintre-accueil.625593a090835147120b.JPG",
     "static/media/bg-galerie.webp": "/jim-debergue/static/media/bg-galerie.74ab650ec0b807f08d26.webp",
     "static/media/instagram-icon.png": "/jim-debergue/static/media/instagram-icon.db2612bd586501d9ed3e.png",
@@ -16,12 +16,12 @@
     "static/media/logonoir.png": "/jim-debergue/static/media/logonoir.5c5a203f0880029f8ccd.png",
     "static/media/logo.png": "/jim-debergue/static/media/logo.fd24b8c7d6f201cabb46.png",
     "index.html": "/jim-debergue/index.html",
-    "main.a3eaa9d4.css.map": "/jim-debergue/static/css/main.a3eaa9d4.css.map",
-    "main.8ca958f4.js.map": "/jim-debergue/static/js/main.8ca958f4.js.map",
-    "787.28cb0dcd.chunk.js.map": "/jim-debergue/static/js/787.28cb0dcd.chunk.js.map"
+    "main.d1c02317.css.map": "/jim-debergue/static/css/main.d1c02317.css.map",
+    "main.016e21b5.js.map": "/jim-debergue/static/js/main.016e21b5.js.map",
+    "787.d4aba7ab.chunk.js.map": "/jim-debergue/static/js/787.d4aba7ab.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.a3eaa9d4.css",
-    "static/js/main.8ca958f4.js"
+    "static/css/main.d1c02317.css",
+    "static/js/main.016e21b5.js"
   ]
 }

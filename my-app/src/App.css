@@ -23,6 +23,7 @@
   background-color: rgba(0, 0, 0, 0.822);
   opacity: 80%;
 }
+
 .app-footer {
   width: 100%;
   background-color: rgb(40, 1, 1);
@@ -31,11 +32,13 @@
   padding-top: 5%;
   padding-bottom: 5%;
 }
+
 .app-footer a {
   font-size: 80%;
   padding-left: 80%;
   font-weight: 100;
 }
+
 .app-footer p {
   color: white;
 }
@@ -54,13 +57,16 @@
   font-weight: 200;
   margin: auto;
 }
+
 .menu-item {
   position: relative;
   padding: 40px;
 }
+
 hr {
   margin-top: 50px;
 }
+
 a {
   position: relative;
   text-decoration: none;
@@ -72,6 +78,7 @@ a:hover {
   color: white;
   font-weight: 300;
 }
+
 a:visited {
   color: white;
 }
@@ -92,9 +99,11 @@ a:visited {
   width: calc(50% - 1%);
   padding-bottom: 10%;
 }
+
 .main-text-title {
   font-size: 200%;
 }
+
 .main-text {
   width: calc(50% - 5%);
   text-align: left;
@@ -106,6 +115,7 @@ a:visited {
   padding-top: 5%;
   padding-bottom: 5%;
 }
+
 .main-text div {
   width: calc(50%);
   padding-left: 5%;
@@ -115,23 +125,29 @@ a:visited {
   background-color: white;
   position: relative;
 }
+
 .last-work .main-text-title {
   color: black;
   padding-top: 1%;
 }
+
 @media screen and (orientation: portrait) {
+
   .App {
     background-size: 150%;
     height: 70%;
+    font-size: 150%;
   }
 
   .menu {
     width: 80%;
   }
+
   .menu-item {
     padding: 30px;
     font-size: 200%;
   }
+
   hr {
     margin-top: 50px;
   }
@@ -144,12 +160,14 @@ a:visited {
     width: calc(100% - 1%);
     padding-bottom: 10%;
   }
+
   .main-text-title {
     font-size: 200%;
   }
+
   .main-text {
     width: calc(100% - 5%);
-    font-size: 70%;
+    font-size: 100%;
   }
 
   .last-work {
@@ -157,11 +175,13 @@ a:visited {
     position: relative;
     font-size: 120%;
   }
+
   .last-work .main-text-title {
     color: black;
     padding-top: 1%;
   }
 }
+
 /* Galerie */
 .galery-page {
   text-align: center;
@@ -200,10 +220,12 @@ a:visited {
   font-weight: 200;
   margin: auto;
 }
+
 .galery-menu-item {
   position: relative;
   padding: 40px;
 }
+
 .galery-menu a {
   color: black;
   position: relative;
@@ -252,25 +274,31 @@ a:visited {
 .array div {
   width: 100%;
 }
+
 .g-array-text {
   width: 100%;
   padding-top: 100%;
 }
+
 .g-array-text p {
   margin: 0;
 }
+
 .g-array-title {
   font-size: 120%;
   font-weight: 250;
 }
+
 .g-array-dimension {
   font-size: 80%;
   font-weight: 100;
 }
+
 .fondu {
   position: relative;
   cursor: pointer;
 }
+
 .galerie-images-haut,
 .galerie-images-bas {
   position: absolute;
@@ -278,12 +306,15 @@ a:visited {
   left: 0;
   width: 100%;
 }
+
 .fondu img {
   transition: opacity 200ms linear;
 }
+
 .fondu img.galerie-images-haut:hover {
   opacity: 0;
 }
+
 .array-page {
   display: flex;
   align-items: center;
@@ -318,6 +349,7 @@ a:visited {
   overflow: scroll;
   z-index: 3;
 }
+
 ::-webkit-scrollbar {
   width: 0.7em;
 }
@@ -341,6 +373,7 @@ a:visited {
   background-color: white;
   justify-content: space-between;
 }
+
 .array-pic img[src="data:image/webp;base64,null"] {
   display: none;
 }
@@ -361,6 +394,7 @@ a:visited {
   text-align: left;
   padding-bottom: 30%;
 }
+
 .array-info p {
   font-weight: 400;
 }
@@ -397,16 +431,21 @@ a:visited {
   z-index: 5;
   cursor: pointer;
 }
+
 @media screen and (orientation: portrait) {
   .galery-page {
     background-size: 130%;
+    font-size: 150%;
   }
+
   .galery-menu {
     width: 80%;
   }
+
   .galery-menu-item {
     padding: 30px;
   }
+
   .galery-menu a {
     font-size: 200%;
   }
@@ -417,11 +456,12 @@ a:visited {
 
   .array {
     width: calc(100% - 15%);
-    margin-bottom: 70%;
+    margin-bottom: 60%;
     font-size: 100%;
     margin-left: 9%;
     margin-right: 7%;
   }
+
   .array img {
     width: 100%;
   }
@@ -430,10 +470,12 @@ a:visited {
     width: 100%;
     height: auto;
   }
+
   .g-array-title {
     font-size: 150%;
     font-weight: 200;
   }
+
   .g-array-dimension {
     font-size: 80%;
     font-weight: 100;
@@ -463,6 +505,7 @@ a:visited {
     width: calc(100% - 0%);
     font-size: 130%;
   }
+
   .array-info p {
     font-weight: 400;
   }
@@ -471,6 +514,7 @@ a:visited {
     padding: 0px;
   }
 }
+
 /* L'Artiste  */
 .artist-page {
   text-align: center;
@@ -486,10 +530,12 @@ a:visited {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
+
 .artist-bloc {
   background-color: white;
   margin-top: -7%;
 }
+
 .artist-title {
   padding-top: 5%;
   font-size: 300%;
@@ -511,6 +557,7 @@ a:visited {
   font-size: 100%;
   font-weight: 300;
 }
+
 .title {
   font-size: 200%;
 }
@@ -522,6 +569,7 @@ a:visited {
 .biography img {
   width: calc(45% - 5%);
 }
+
 .inspiration {
   background-color: black;
   display: flex;
@@ -531,6 +579,7 @@ a:visited {
   justify-content: space-between;
   padding: 10%;
 }
+
 .inspiration img {
   width: calc(40% - 5%);
 }
@@ -577,9 +626,11 @@ a:visited {
 .groups img {
   width: calc(50%);
 }
+
 @media screen and (orientation: portrait) {
   .artist-page {
     background-size: 140%;
+    font-size: 150%;
   }
 
   .biography {
@@ -601,9 +652,11 @@ a:visited {
   .biography img {
     width: calc(100% - 5%);
   }
+
   .inspiration {
     flex-direction: column-reverse;
   }
+
   .inspiration img {
     width: calc(100% - 5%);
   }
@@ -619,10 +672,12 @@ a:visited {
   .groups {
     flex-direction: column-reverse;
   }
+
   .groups img {
     width: calc(100% - 5%);
   }
 }
+
 /* Contact */
 .contact-page {
   text-align: center;
@@ -638,6 +693,7 @@ a:visited {
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   color: rgb(52, 52, 52);
 }
+
 .contact-bloc {
   display: flex;
   flex-direction: column;
@@ -646,11 +702,12 @@ a:visited {
   font-size: 150%;
 }
 
-.contact-bloc > * {
+.contact-bloc>* {
   margin-bottom: 5%;
   color: rgb(52, 52, 52);
   font-size: 100%;
 }
+
 .contact-title {
   font-size: 200%;
   font-weight: 200;
@@ -658,6 +715,7 @@ a:visited {
   width: 100%;
   color: black;
 }
+
 .contact-bloc a {
   color: rgb(52, 52, 52);
   padding-left: 80%;
@@ -671,8 +729,9 @@ a:visited {
   background-repeat: no-repeat;
   height: 50px;
   width: 200px;
-  margin-right: 15%;
+  margin-right: 20%;
 }
+
 .contact-email a:hover {
   color: rgb(221, 174, 4);
   font-weight: 500;
@@ -685,12 +744,14 @@ a:visited {
   background-repeat: no-repeat;
   height: 40px;
   width: 200px;
-  margin-right: 15%;
+  margin-right: 20%;
 }
+
 .insta a:hover {
   color: blueviolet;
   font-weight: 500;
 }
+
 .facebook {
   background-image: url("./static/facebook-icon.png");
   background-size: 20%;
@@ -698,17 +759,37 @@ a:visited {
   background-repeat: no-repeat;
   height: 40px;
   width: 200px;
-  margin-right: 15%;
+  margin-right: 20%;
 }
+
 .facebook a:hover {
   color: blue;
   font-weight: 500;
 }
+
 @media screen and (orientation: portrait) {
+  .contact-page {
+    font-size: 150%;
+  }
+
   .contact-title {
     margin-top: 30%;
   }
+
+  .contact-email {
+    margin-right: 70%;
+  }
+
+  .insta {
+    margin-right: 70%;
+  }
+
+  .facebook {
+    margin-right: 70%;
+  }
+
 }
+
 /* Admin */
 .admin-page {
   color: white;
@@ -729,21 +810,26 @@ a:visited {
   padding: 0p;
   margin: 0;
 }
+
 .admin-menu {
   padding-top: 20%;
 }
+
 .admin-title {
   font-size: 200%;
   padding-top: 10%;
 }
+
 .admin-bloc {
   background-color: black;
 }
+
 .admin-form {
   text-align: center;
   padding: 50px;
   justify-content: space-between;
 }
+
 .admin-form input {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
@@ -754,6 +840,7 @@ a:visited {
   border-radius: 20px;
   text-align: center;
 }
+
 .admin-form textarea {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
@@ -765,6 +852,7 @@ a:visited {
   border-radius: 20px;
   text-align: center;
 }
+
 .admin-form .array-submit {
   background-color: rgb(107, 182, 32);
   font-size: 150%;
@@ -803,6 +891,7 @@ a:visited {
   padding-bottom: 10%;
   margin-top: 40px;
 }
+
 .admin-list .g-array-title {
   font-size: 100%;
 }
@@ -818,6 +907,7 @@ a:visited {
   background-color: rgba(66, 180, 66, 0.55);
   border-radius: 20px;
 }
+
 .array-page .modifier {
   background-position: bottom;
   background-size: 40px;
@@ -827,6 +917,7 @@ a:visited {
   margin-left: 20%;
   background-image: url("../src/static/pencil.png");
 }
+
 .array-page button {
   border: none;
   background: none;
@@ -843,6 +934,7 @@ a:visited {
   border-radius: 20px;
   text-align: center;
 }
+
 .array-page textarea {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
